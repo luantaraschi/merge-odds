@@ -9,13 +9,11 @@
     "ai_authored_pr_text": "not_stated",
     "evidence": []
   },
+  "insufficient_sample": true,
   "merge_stats": {
     "sample_size": 85,
-    "window_days": 3.778,
+    "window_days": 3.7948,
     "bots_excluded": true,
-    "casual_author_acceptance": 0.2,
-    "distinct_casual_authors": 2,
-    "median_days_to_merge": 0.9237,
-    "p90_days_to_merge": 1.0906
+    "casual_sample_size": 10
   }
 }

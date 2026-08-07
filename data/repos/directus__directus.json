@@ -38,8 +38,9 @@
     "sample_size": 100,
     "window_days": 102.1549,
     "bots_excluded": true,
+    "casual_sample_size": 46,
     "casual_author_acceptance": 0.3261,
-    "distinct_casual_authors": 14,
+    "distinct_merged_casual_authors": 14,
     "median_days_to_merge": 4.0867,
     "p90_days_to_merge": 49.6518
   }

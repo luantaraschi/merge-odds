@@ -22,13 +22,11 @@
       }
     ]
   },
+  "insufficient_sample": true,
   "merge_stats": {
     "sample_size": 99,
     "window_days": 27.313,
     "bots_excluded": true,
-    "casual_author_acceptance": 0.3333,
-    "distinct_casual_authors": 4,
-    "median_days_to_merge": 0.1154,
-    "p90_days_to_merge": 1.5779
+    "casual_sample_size": 12
   }
 }
