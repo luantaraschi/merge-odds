@@ -31,6 +31,13 @@ jobs:
           python scripts/refresh.py
           python scripts/render.py
 
+      - name: Validate the re-measured data
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python scripts/validate_data.py
+          python scripts/render.py --check
+
       - name: Open the update pull request
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:

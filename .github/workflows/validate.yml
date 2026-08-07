@@ -53,7 +53,8 @@ jobs:
         if: steps.changed.outputs.files != ''
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python scripts/validate_data.py ${{ steps.changed.outputs.files }}
+          CHANGED_FILES: ${{ steps.changed.outputs.files }}
+        run: python scripts/validate_data.py $CHANGED_FILES
 
       - name: README table in sync
         run: python scripts/render.py --check
