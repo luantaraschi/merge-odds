@@ -52,7 +52,18 @@ def quote_errors(entry: dict, fetch) -> list[str]:
     problems = []
     for item in entry["policy"]["evidence"]:
         sha = item["url"].split("/blob/")[1].split("/")[0]
-        body = fetch(entry["repo"], sha, item["source"])
+        try:
+            body = fetch(entry["repo"], sha, item["source"])
+        except GitHubUnavailable as error:
+            # A transient failure (persistent 5xx, exhausted rate-limit
+            # retries, ...) means this particular quote could not be
+            # checked. Record it and keep checking the rest of the
+            # evidence for this entry instead of losing findings already
+            # made for other items.
+            problems.append(
+                f"{item['source']}: could not verify quote at {sha[:8]}: {error}"
+            )
+            continue
         if body is None:
             problems.append(f"{item['source']}: file not readable at {sha[:8]}")
             continue
@@ -63,30 +74,56 @@ def quote_errors(entry: dict, fetch) -> list[str]:
     return problems
 
 
+def _resolve_paths(raw_paths: list[Path]) -> tuple[list[Path], list[str]]:
+    """Resolve explicit CLI path arguments.
+
+    Every argument must exist, be a file and end in ``.json``. Unlike a
+    directory glob, an explicit argument that quietly resolves to nothing
+    is a bug, not an empty result -- it must never look like "there was
+    nothing to check" when the user actually asked for something specific.
+    """
+    resolved = []
+    bad_arguments = []
+    for candidate in raw_paths:
+        if candidate.is_file() and candidate.suffix == ".json":
+            resolved.append(candidate)
+        else:
+            bad_arguments.append(f"{candidate}: not a readable .json file")
+    return resolved, bad_arguments
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("paths", nargs="*", type=Path)
     arguments = parser.parse_args()
 
-    paths = arguments.paths or sorted((ROOT / "data" / "repos").glob("*.json"))
-    paths = [path for path in paths if path.suffix == ".json" and path.exists()]
-
-    client = GitHub()
     failed = False
 
+    if arguments.paths:
+        paths, bad_arguments = _resolve_paths(arguments.paths)
+        if bad_arguments:
+            failed = True
+            for problem in bad_arguments:
+                print(problem, file=sys.stderr)
+    else:
+        # No arguments: validate everything under data/repos/. An empty
+        # directory legitimately yields zero entries here.
+        paths = sorted((ROOT / "data" / "repos").glob("*.json"))
+
+    client = GitHub()
+
     for path in paths:
-        entry = json.loads(path.read_text(encoding="utf-8"))
+        try:
+            entry = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as error:
+            failed = True
+            print(f"{path}:", file=sys.stderr)
+            print(f"  invalid JSON: {error}", file=sys.stderr)
+            continue
+
         problems = schema_errors(entry)
         if not problems:
-            problems = pairing_errors(entry)
-            try:
-                problems += quote_errors(entry, client.raw_file)
-            except GitHubUnavailable as error:
-                # A transient failure (persistent 5xx, exhausted rate-limit
-                # retries, ...) means the quotes for this entry could not be
-                # checked at all. That must never be silently treated as a
-                # pass, so it becomes its own clear, non-zero-exit failure.
-                problems.append(f"could not verify quotes: {error}")
+            problems = pairing_errors(entry) + quote_errors(entry, client.raw_file)
         if problems:
             failed = True
             print(f"{path}:", file=sys.stderr)
@@ -94,6 +131,10 @@ def main() -> int:
                 print(f"  {problem}", file=sys.stderr)
 
     if not failed:
+        # Only reachable when every requested path (or, with no arguments,
+        # every entry under data/repos/) was actually checked -- so "0
+        # entries valid" can only appear for a legitimately empty directory,
+        # never for a run that silently checked nothing it was asked to.
         print(f"{len(paths)} entries valid")
     return 1 if failed else 0
 

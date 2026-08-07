@@ -100,3 +100,93 @@ def test_main_reports_a_clear_error_and_nonzero_exit_when_github_is_unavailable(
     assert exit_code != 0
     assert "payloadcms/payload" in captured.err
     assert "503" in captured.err
+
+
+def test_quote_errors_keeps_a_verbatim_failure_alongside_an_unavailability_failure():
+    # A GitHubUnavailable on one evidence item must not swallow a genuine
+    # verbatim mismatch already found on another item in the same entry.
+    entry = load("entry_valid.json")
+    entry["policy"]["evidence"].append(
+        {
+            "claim": "ai_authored_pr_text",
+            "source": "OTHER.md",
+            "url": (
+                "https://github.com/payloadcms/payload/blob/"
+                "0123456789abcdef0123456789abcdef01234567/OTHER.md#L1"
+            ),
+            "quote": "some other quote",
+        }
+    )
+
+    def fetch(repo, sha, path):
+        if path == "CONTRIBUTING.md":
+            return "intro\nClaude Code works well here.\noutro\n"  # rewritten
+        raise GitHubUnavailable(f"could not fetch {path} for {repo}@{sha}: status 503")
+
+    problems = quote_errors(entry, fetch)
+
+    assert any("not found verbatim" in problem for problem in problems)
+    assert any("503" in problem for problem in problems)
+
+
+def test_nonexistent_path_argument_is_reported_and_never_looks_like_a_pass(
+    monkeypatch, capsys
+):
+    import validate_module
+
+    monkeypatch.setattr(sys, "argv", ["validate_data.py", "typo-entry.json"])
+
+    exit_code = validate_module.main()
+
+    captured = capsys.readouterr()
+    assert exit_code != 0
+    assert "typo-entry.json" in captured.err
+    assert "entries valid" not in captured.out
+
+
+def test_no_arguments_against_an_empty_directory_still_exits_zero(
+    tmp_path, monkeypatch, capsys
+):
+    import validate_module
+
+    # No data/repos/ subdirectory is even created: Path.glob on a missing
+    # directory legitimately yields nothing, and that is the correct result.
+    monkeypatch.setattr(validate_module, "ROOT", tmp_path)
+    monkeypatch.setattr(sys, "argv", ["validate_data.py"])
+
+    exit_code = validate_module.main()
+
+    assert exit_code == 0
+
+
+def test_malformed_json_is_reported_and_does_not_stop_the_next_path(
+    tmp_path, monkeypatch, capsys
+):
+    import validate_module
+
+    bad_path = tmp_path / "bad.json"
+    bad_path.write_text("{not valid json", encoding="utf-8")
+
+    good_path = tmp_path / "payloadcms__payload.json"
+    good_path.write_text(json.dumps(load("entry_valid.json")), encoding="utf-8")
+
+    class FakeGitHub:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def raw_file(self, repo, sha, path):
+            return "intro\nClaude Code is supported.\noutro\n"
+
+    monkeypatch.setattr(validate_module, "GitHub", FakeGitHub)
+    monkeypatch.setattr(sys, "argv", ["validate_data.py", str(bad_path), str(good_path)])
+
+    exit_code = validate_module.main()
+
+    captured = capsys.readouterr()
+    assert exit_code != 0  # bad.json alone must fail the whole run
+    assert "bad.json" in captured.err
+    assert "invalid JSON" in captured.err
+    assert "Traceback" not in captured.err
+    # good_path was still checked and found valid, so it is never named
+    # among the reported problems.
+    assert str(good_path) not in captured.err

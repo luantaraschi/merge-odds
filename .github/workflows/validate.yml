@@ -31,7 +31,15 @@ jobs:
         id: changed
         run: |
           base="${{ github.event.pull_request.base.sha || github.event.before }}"
-          files=$(git diff --name-only --diff-filter=d "$base" HEAD -- 'data/repos/*.json' | tr '\n' ' ')
+          zero="0000000000000000000000000000000000000000"
+          if [ -z "$base" ] || [ "$base" = "$zero" ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+            # No usable base to diff against (branch creation, a force-push
+            # that rewrote history, ...). Falling back to validating every
+            # entry is the safe direction: more checking, never less.
+            files=$(find data/repos -maxdepth 1 -name '*.json' -type f | sort | tr '\n' ' ')
+          else
+            files=$(git diff --name-only --diff-filter=d "$base" HEAD -- 'data/repos/*.json' | tr '\n' ' ')
+          fi
           echo "files=$files" >> "$GITHUB_OUTPUT"
 
       - name: Validate changed entries
