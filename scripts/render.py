@@ -70,8 +70,21 @@ def render_table(entries: list[dict]) -> str:
 
 
 def splice(readme: str, table: str) -> str:
-    before, _, rest = readme.partition(START)
-    _, _, after = rest.partition(END)
+    start_count = readme.count(START)
+    end_count = readme.count(END)
+
+    if start_count != 1:
+        raise ValueError(f"expected exactly one {START!r} marker, found {start_count}")
+    if end_count != 1:
+        raise ValueError(f"expected exactly one {END!r} marker, found {end_count}")
+
+    start_index = readme.index(START)
+    end_index = readme.index(END)
+    if start_index > end_index:
+        raise ValueError(f"{START!r} marker must appear before {END!r} marker")
+
+    before = readme[:start_index]
+    after = readme[end_index + len(END) :]
     return f"{before}{START}\n{table}\n{END}{after}"
 
 

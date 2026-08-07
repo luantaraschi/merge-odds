@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+import pytest
+
 from render_module import render_table, splice  # see conftest note in Step 4
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -45,3 +47,55 @@ def test_splice_replaces_only_between_the_markers():
     assert result.startswith("intro")
     assert result.endswith("outro\n")
     assert "NEW" in result
+
+
+def test_splice_round_trips_a_well_formed_readme_byte_for_byte_outside_the_markers():
+    readme = "intro\n<!-- merge-odds:table:start -->\nold\n<!-- merge-odds:table:end -->\noutro\n"
+
+    result = splice(readme, "NEW")
+
+    before, _, rest = readme.partition("<!-- merge-odds:table:start -->")
+    _, _, after = rest.partition("<!-- merge-odds:table:end -->")
+    assert result.startswith(before)
+    assert result.endswith(after)
+
+
+def test_splice_raises_when_the_end_marker_is_missing():
+    readme = "intro\n<!-- merge-odds:table:start -->\nold content\nno end marker here\noutro tail\n"
+
+    with pytest.raises(ValueError):
+        splice(readme, "NEW")
+
+
+def test_splice_raises_when_the_start_marker_is_missing():
+    readme = "intro\nold content\n<!-- merge-odds:table:end -->\noutro tail\n"
+
+    with pytest.raises(ValueError):
+        splice(readme, "NEW")
+
+
+def test_splice_raises_when_the_markers_are_in_the_wrong_order():
+    readme = "intro\n<!-- merge-odds:table:end -->\nold\n<!-- merge-odds:table:start -->\noutro\n"
+
+    with pytest.raises(ValueError):
+        splice(readme, "NEW")
+
+
+def test_splice_raises_when_the_start_marker_appears_twice():
+    readme = (
+        "intro\n<!-- merge-odds:table:start -->\nold\n<!-- merge-odds:table:start -->\n"
+        "<!-- merge-odds:table:end -->\noutro\n"
+    )
+
+    with pytest.raises(ValueError):
+        splice(readme, "NEW")
+
+
+def test_splice_raises_when_the_end_marker_appears_twice():
+    readme = (
+        "intro\n<!-- merge-odds:table:start -->\nold\n<!-- merge-odds:table:end -->\n"
+        "<!-- merge-odds:table:end -->\noutro\n"
+    )
+
+    with pytest.raises(ValueError):
+        splice(readme, "NEW")
