@@ -4,10 +4,17 @@
   "default_branch_sha": "6c0439ace812f134859a825e421f5f241cbf01b3",
   "policy": {
     "accepts_external_prs": true,
-    "requires_issue_first": false,
+    "requires_issue_first": true,
     "ai_assisted_code": "not_stated",
     "ai_authored_pr_text": "not_stated",
-    "evidence": []
+    "evidence": [
+      {
+        "claim": "requires_issue_first",
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/supabase/supabase/blob/6c0439ace812f134859a825e421f5f241cbf01b3/CONTRIBUTING.md#L23",
+        "quote": "- If you’re submitting a new feature, make sure you have opened a [Discussion](https://github.com/orgs/supabase/discussions/new/choose) to discuss the new feature before opening a PR. We’d love to accept your hard work, but unfortunately if a feature hasn’t gone through a proper design process, your PR will be closed."
+      }
+    ]
   },
   "merge_stats": {
     "sample_size": 97,

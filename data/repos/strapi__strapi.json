@@ -5,22 +5,9 @@
   "policy": {
     "accepts_external_prs": true,
     "requires_issue_first": false,
-    "ai_assisted_code": "allowed",
+    "ai_assisted_code": "not_stated",
     "ai_authored_pr_text": "not_stated",
-    "evidence": [
-      {
-        "claim": "ai_assisted_code",
-        "source": "AGENTS.md",
-        "url": "https://github.com/strapi/strapi/blob/aaaae591147675500fa380affdeef241117b8495/AGENTS.md#L37",
-        "quote": "**`.ai/skills/`** is the canonical source for committed repo skills. Each subdirectory containing a `SKILL.md` is a skill."
-      },
-      {
-        "claim": "ai_assisted_code",
-        "source": "AGENTS.md",
-        "url": "https://github.com/strapi/strapi/blob/aaaae591147675500fa380affdeef241117b8495/AGENTS.md#L39",
-        "quote": "The AI-tooling well-known locations are **symlink targets** maintained by `yarn ai:sync`: `.agents/skills/`, `.claude/skills/`, `.cursor/skills/`."
-      }
-    ]
+    "evidence": []
   },
   "merge_stats": {
     "sample_size": 83,
