@@ -1,0 +1,7 @@
+{
+  "name": "merge-odds",
+  "version": "0.1.0",
+  "description": "Check whether a project accepts outside contributions, and under what rules, before doing any work.",
+  "author": { "name": "Luan Taraschi" },
+  "license": "MIT"
+}
