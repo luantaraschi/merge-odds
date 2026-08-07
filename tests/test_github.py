@@ -78,6 +78,31 @@ def test_closed_pulls_maps_bots_and_timestamps():
     assert any(pull.merged_at is not None for pull in pulls)
 
 
+def test_closed_pulls_raises_on_persistent_server_error():
+    session = FakeSession([FakeResponse(500, text="boom") for _ in range(MAX_ATTEMPTS)])
+
+    with pytest.raises(GitHubUnavailable):
+        GitHub(session=session, sleep=lambda _: None).closed_pulls("payloadcms/payload")
+
+
+def test_closed_pulls_raises_on_forbidden_with_no_rate_limit_headers():
+    # A 403 with no rate-limit headers is not retried by _get; it must
+    # surface as GitHubUnavailable instead of falling through to
+    # response.json(), whose shape for an error body ({"message": ...})
+    # is not a list of pull requests.
+    session = FakeSession([FakeResponse(403, {"message": "Forbidden"})])
+
+    with pytest.raises(GitHubUnavailable):
+        GitHub(session=session).closed_pulls("payloadcms/payload")
+
+
+def test_closed_pulls_still_raises_repo_not_found_on_404():
+    session = FakeSession([FakeResponse(404, {"message": "Not Found"})])
+
+    with pytest.raises(RepoNotFound):
+        GitHub(session=session).closed_pulls("payloadcms/payload")
+
+
 def test_raw_file_returns_none_on_404():
     session = FakeSession([FakeResponse(404, text="")])
 

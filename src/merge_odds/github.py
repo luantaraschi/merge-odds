@@ -110,6 +110,10 @@ class GitHub:
         response = self._get(url)
         if response.status_code == 404:
             raise RepoNotFound(name)
+        if response.status_code != 200:
+            raise GitHubUnavailable(
+                f"could not fetch pull requests for {name}: status {response.status_code}"
+            )
 
         pulls = []
         for item in response.json():

@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
   refresh:
@@ -47,7 +48,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if grep -q "No policy drift." refresh-report.md; then
+          if grep -Fqx "No policy drift." refresh-report.md; then
             echo "nothing to report"; exit 0
           fi
           open=$(gh issue list --label policy-drift --state open --json number --jq 'length')

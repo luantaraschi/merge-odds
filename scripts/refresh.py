@@ -96,6 +96,12 @@ def main() -> int:
             updated, stale = refresh_entry(
                 entry, meta, pulls, client.raw_file, today
             )
+        except RepoNotFound:
+            # A narrow race: the repository existed when client.repo() ran
+            # above but was deleted or made private before closed_pulls()
+            # got to it. Same handling as the first-stage check.
+            report.append(f"- `{entry['repo']}` is gone or private")
+            continue
         except GitHubUnavailable as error:
             # Same reasoning as above: a fetch failure while recomputing
             # statistics or checking evidence quotes is a transient problem,
