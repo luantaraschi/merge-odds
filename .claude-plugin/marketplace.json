@@ -1,0 +1,19 @@
+{
+  "name": "merge-odds",
+  "owner": {
+    "name": "Luan Taraschi",
+    "email": "130802253+luantaraschi@users.noreply.github.com"
+  },
+  "plugins": [
+    {
+      "name": "merge-odds",
+      "source": "./",
+      "description": "Check whether a project accepts outside contributions, and under what rules, before doing any work.",
+      "author": {
+        "name": "Luan Taraschi",
+        "email": "130802253+luantaraschi@users.noreply.github.com"
+      },
+      "homepage": "https://github.com/luantaraschi/merge-odds"
+    }
+  ]
+}
