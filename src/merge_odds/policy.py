@@ -13,6 +13,8 @@ CANDIDATE_FILES = (
     "CLAUDE.md",
     "CONTRIBUTING.md",
     ".github/CONTRIBUTING.md",
+    "contributing.md",
+    ".github/contributing.md",
     "docs/CONTRIBUTING.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
     ".github/pull_request_template.md",
