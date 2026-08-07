@@ -1,0 +1,46 @@
+{
+  "repo": "directus/directus",
+  "measured_at": "2026-08-07",
+  "default_branch_sha": "197d141ad92c659a8d89a29fe58b9618ed9863e2",
+  "policy": {
+    "accepts_external_prs": true,
+    "requires_issue_first": false,
+    "ai_assisted_code": "allowed_with_conditions",
+    "ai_authored_pr_text": "disallowed",
+    "evidence": [
+      {
+        "claim": "ai_assisted_code",
+        "source": "ai_policy.md",
+        "url": "https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L5-L6",
+        "quote": "We welcome the use of AI tools to assist with development in this repository. However, AI is a tool, not a substitute\nfor understanding or accountability."
+      },
+      {
+        "claim": "ai_assisted_code",
+        "source": "ai_policy.md",
+        "url": "https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L19",
+        "quote": "We require a **human in the loop** at all times."
+      },
+      {
+        "claim": "ai_assisted_code",
+        "source": "ai_policy.md",
+        "url": "https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L21-L22",
+        "quote": "The use of **fully autonomous agents** to create issues, pull requests, or other contributions is **not allowed**.\nContributions suspected to be generated without meaningful human involvement will be closed."
+      },
+      {
+        "claim": "ai_authored_pr_text",
+        "source": "ai_policy.md",
+        "url": "https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L29-L30",
+        "quote": "- Do **not** copy-paste or use entirely AI-generated text for issue descriptions, pull requests, comments, or replies\n- Comments that appear to be AI-generated may be removed"
+      }
+    ]
+  },
+  "merge_stats": {
+    "sample_size": 100,
+    "window_days": 102.1549,
+    "bots_excluded": true,
+    "casual_author_acceptance": 0.3261,
+    "distinct_casual_authors": 14,
+    "median_days_to_merge": 4.0867,
+    "p90_days_to_merge": 49.6518
+  }
+}

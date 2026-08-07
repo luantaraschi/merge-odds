@@ -1,0 +1,46 @@
+{
+  "repo": "n8n-io/n8n",
+  "measured_at": "2026-08-07",
+  "default_branch_sha": "c0d863ec3cbad249ac6e416e0c94a500d237a4f7",
+  "policy": {
+    "accepts_external_prs": true,
+    "requires_issue_first": true,
+    "ai_assisted_code": "allowed_with_conditions",
+    "ai_authored_pr_text": "disallowed",
+    "evidence": [
+      {
+        "claim": "requires_issue_first",
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/n8n-io/n8n/blob/c0d863ec3cbad249ac6e416e0c94a500d237a4f7/CONTRIBUTING.md#L451-L458",
+        "quote": "- **Ask before you start:**\n  - If you want to work on an existing issue, comment to ask first and wait for a team member to respond before you pick it up. This avoids two people, including us, building the same fix at the same time.\n- **Bug fixes:**\n  - An issue must already exist that describes the problem and gives clear steps to reproduce it. If there is no issue, [open one](https://github.com/n8n-io/n8n/issues/new/choose) first.\n  - Bug-fix PRs with no linked issue will be returned so we can confirm and track the problem.\n- **Features and enhancements:**\n  - Open a topic on the [n8n commu"
+      },
+      {
+        "claim": "ai_assisted_code",
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/n8n-io/n8n/blob/c0d863ec3cbad249ac6e416e0c94a500d237a4f7/CONTRIBUTING.md#L501",
+        "quote": "We use AI tools ourselves and we welcome AI-assisted contributions. The problem is not the tool. The problem is code the author cannot stand behind."
+      },
+      {
+        "claim": "ai_assisted_code",
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/n8n-io/n8n/blob/c0d863ec3cbad249ac6e416e0c94a500d237a4f7/CONTRIBUTING.md#L503-L504",
+        "quote": "- **Understand and own your code:**\n  - You must understand every line you submit and be able to explain what it does and how it fits the rest of the system, without the AI. If you cannot, do not open the PR yet."
+      },
+      {
+        "claim": "ai_authored_pr_text",
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/n8n-io/n8n/blob/c0d863ec3cbad249ac6e416e0c94a500d237a4f7/CONTRIBUTING.md#L505-L506",
+        "quote": "- **Write the description in your own words:**\n  - Write your PR description, issue, and forum posts in your own words. Do not paste raw model output."
+      }
+    ]
+  },
+  "merge_stats": {
+    "sample_size": 87,
+    "window_days": 1.7535,
+    "bots_excluded": true,
+    "casual_author_acceptance": 0.4516,
+    "distinct_casual_authors": 21,
+    "median_days_to_merge": 0.7824,
+    "p90_days_to_merge": 2.2607
+  }
+}
