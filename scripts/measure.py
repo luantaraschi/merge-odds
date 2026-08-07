@@ -27,7 +27,9 @@ def measure(repo: str, client: GitHub) -> dict:
         for path in CANDIDATE_FILES
         if (body := client.raw_file(meta.full_name, meta.head_sha, path))
     }
-    return build_entry(meta, pulls, scan(files), date.today().isoformat())
+    return build_entry(
+        meta, pulls, scan(files), date.today().isoformat(), files_read=tuple(files)
+    )
 
 
 def main() -> int:
@@ -52,8 +54,11 @@ def main() -> int:
         target.write_text(text, encoding="utf-8", newline="\n")
         print(f"wrote {target}", file=sys.stderr)
         if "_review" in entry:
+            review = entry["_review"]
             print(
-                f"{len(entry['_review'])} quote(s) need review before this passes CI",
+                f"{len(review['candidates'])} quote(s) and "
+                f"{len(review['unmatched_claims'])} unmatched claim(s) "
+                "need review before this passes CI",
                 file=sys.stderr,
             )
     else:

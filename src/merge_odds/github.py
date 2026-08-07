@@ -81,6 +81,10 @@ class GitHub:
         response = self._get(f"{API}/repos/{name}")
         if response.status_code == 404:
             raise RepoNotFound(name)
+        if response.status_code != 200:
+            raise GitHubUnavailable(
+                f"could not fetch repository {name}: status {response.status_code}"
+            )
         response_body = response.json()
         full_name = response_body["full_name"]
 

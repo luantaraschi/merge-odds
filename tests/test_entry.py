@@ -48,12 +48,57 @@ def test_candidates_land_in_review_never_in_evidence():
     entry = build_entry(META, sample(), [candidate], "2026-08-07")
 
     assert entry["policy"]["evidence"] == []
-    assert len(entry["_review"]) == 1
-    assert entry["_review"][0]["url"] == (
+    assert len(entry["_review"]["candidates"]) == 1
+    assert entry["_review"]["candidates"][0]["url"] == (
         "https://github.com/payloadcms/payload/blob/"
         + "a" * 40
         + "/CONTRIBUTING.md#L10-L12"
     )
+
+
+def test_no_candidates_leaves_every_claim_unmatched():
+    entry = build_entry(META, sample(), [], "2026-08-07")
+
+    assert entry["_review"]["candidates"] == []
+    assert entry["_review"]["unmatched_claims"] == [
+        "accepts_external_prs",
+        "requires_issue_first",
+        "ai_assisted_code",
+        "ai_authored_pr_text",
+    ]
+
+
+def test_a_matched_claim_leaves_the_others_unmatched():
+    candidate = Candidate(
+        claim="ai_assisted_code",
+        source="CONTRIBUTING.md",
+        line_start=10,
+        line_end=12,
+        quote="Claude Code is supported.",
+    )
+
+    entry = build_entry(META, sample(), [candidate], "2026-08-07")
+
+    assert entry["_review"]["unmatched_claims"] == [
+        "accepts_external_prs",
+        "requires_issue_first",
+        "ai_authored_pr_text",
+    ]
+
+
+def test_files_read_reflects_the_paths_passed_in():
+    entry = build_entry(
+        META,
+        sample(),
+        [],
+        "2026-08-07",
+        files_read=("CONTRIBUTING.md", ".github/PULL_REQUEST_TEMPLATE.md"),
+    )
+
+    assert entry["_review"]["files_read"] == [
+        "CONTRIBUTING.md",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+    ]
 
 
 def test_archived_repo_carries_no_stats():

@@ -93,6 +93,15 @@ def test_raw_file_raises_on_persistent_server_error():
         )
 
 
+def test_repo_raises_on_forbidden_first_response():
+    # A 403 with no rate-limit headers is not retried by _get; it must still
+    # surface as GitHubUnavailable instead of falling through to response.json().
+    session = FakeSession([FakeResponse(403, {"message": "Forbidden"})])
+
+    with pytest.raises(GitHubUnavailable):
+        GitHub(session=session).repo("payloadcms/payload")
+
+
 def test_repo_raises_when_head_commit_fails():
     session = FakeSession(
         [FakeResponse(200, load("repo_payload.json")), FakeResponse(422, text="no such ref")]

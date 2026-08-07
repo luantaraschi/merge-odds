@@ -8,6 +8,14 @@ from .github import RepoMeta
 from .policy import Candidate
 from .prs import PullRequest, merge_stats
 
+CLAIM_ORDER = (
+    "accepts_external_prs",
+    "requires_issue_first",
+    "ai_assisted_code",
+    "ai_authored_pr_text",
+)
+"""Matches the order of ``$defs.claim.enum`` in schema/repo.schema.json."""
+
 
 def evidence_url(repo: str, sha: str, path: str, start: int, end: int) -> str:
     anchor = f"#L{start}" if start == end else f"#L{start}-L{end}"
@@ -19,6 +27,7 @@ def build_entry(
     pulls: list[PullRequest],
     candidates: list[Candidate],
     measured_at: str,
+    files_read: tuple[str, ...] = (),
 ) -> dict:
     entry: dict = {
         "repo": meta.full_name,
@@ -41,8 +50,11 @@ def build_entry(
             entry["insufficient_sample"] = True
         entry["merge_stats"] = computed["merge_stats"]
 
-    if candidates:
-        entry["_review"] = [
+    matched_claims = {candidate.claim for candidate in candidates}
+    unmatched_claims = [claim for claim in CLAIM_ORDER if claim not in matched_claims]
+
+    entry["_review"] = {
+        "candidates": [
             {
                 "claim": candidate.claim,
                 "source": candidate.source,
@@ -56,7 +68,10 @@ def build_entry(
                 "quote": candidate.quote,
             }
             for candidate in candidates
-        ]
+        ],
+        "unmatched_claims": unmatched_claims,
+        "files_read": list(files_read),
+    }
 
     return entry
 
