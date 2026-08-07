@@ -17,3 +17,10 @@ _spec = importlib.util.spec_from_file_location("render_module", ROOT / "scripts"
 render_module = importlib.util.module_from_spec(_spec)
 sys.modules["render_module"] = render_module
 _spec.loader.exec_module(render_module)
+
+_vspec = importlib.util.spec_from_file_location(
+    "validate_module", ROOT / "scripts" / "validate_data.py"
+)
+validate_module = importlib.util.module_from_spec(_vspec)
+sys.modules["validate_module"] = validate_module
+_vspec.loader.exec_module(validate_module)
