@@ -5,22 +5,9 @@
   "policy": {
     "accepts_external_prs": true,
     "requires_issue_first": false,
-    "ai_assisted_code": "allowed",
+    "ai_assisted_code": "not_stated",
     "ai_authored_pr_text": "not_stated",
-    "evidence": [
-      {
-        "claim": "ai_assisted_code",
-        "source": "CONTRIBUTING.md",
-        "url": "https://github.com/payloadcms/payload/blob/d192e6fedae29dc574468cbac1b5a5a8aae910b6/CONTRIBUTING.md#L43",
-        "quote": "This project includes configuration files for AI-assisted development."
-      },
-      {
-        "claim": "ai_assisted_code",
-        "source": "CONTRIBUTING.md",
-        "url": "https://github.com/payloadcms/payload/blob/d192e6fedae29dc574468cbac1b5a5a8aae910b6/CONTRIBUTING.md#L45-L49",
-        "quote": "| Tool              | Context | Skills | Hooks | MCP |\n| ----------------- | ------- | ------ | ----- | --- |\n| Claude Code       | ✅      | ✅     | ✅    | ✅  |\n| Cursor            | ✅      | ✅     | ✅    | ✅  |\n| VS Code + Copilot | ⚠️      | ✅     | ❌    | ✅  |"
-      }
-    ]
+    "evidence": []
   },
   "insufficient_sample": true,
   "merge_stats": {
