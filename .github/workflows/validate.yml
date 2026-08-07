@@ -35,8 +35,15 @@ jobs:
           if [ -z "$base" ] || [ "$base" = "$zero" ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
             # No usable base to diff against (branch creation, a force-push
             # that rewrote history, ...). Falling back to validating every
-            # entry is the safe direction: more checking, never less.
-            files=$(find data/repos -maxdepth 1 -name '*.json' -type f | sort | tr '\n' ' ')
+            # entry is the safe direction: more checking, never less. Guard
+            # the directory explicitly: git does not track empty
+            # directories, so a fresh checkout before the first entry is
+            # ever added would otherwise make `find` fail and abort the step.
+            if [ -d data/repos ]; then
+              files=$(find data/repos -maxdepth 1 -name '*.json' -type f | sort | tr '\n' ' ')
+            else
+              files=
+            fi
           else
             files=$(git diff --name-only --diff-filter=d "$base" HEAD -- 'data/repos/*.json' | tr '\n' ' ')
           fi
