@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/luantaraschi/merge-odds/schema/repo.schema.json",
+  "title": "merge-odds repository entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["repo", "measured_at", "default_branch_sha", "policy"],
+  "properties": {
+    "repo": { "type": "string", "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$" },
+    "measured_at": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "default_branch_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "archived": { "type": "boolean" },
+    "insufficient_sample": { "type": "boolean" },
+    "policy_stale": { "type": "boolean" },
+    "policy": { "$ref": "#/$defs/policy" },
+    "merge_stats": { "$ref": "#/$defs/merge_stats" }
+  },
+  "$defs": {
+    "stance": {
+      "enum": ["allowed", "allowed_with_conditions", "not_stated", "disallowed"]
+    },
+    "claim": {
+      "enum": [
+        "accepts_external_prs",
+        "requires_issue_first",
+        "ai_assisted_code",
+        "ai_authored_pr_text"
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepts_external_prs",
+        "requires_issue_first",
+        "ai_assisted_code",
+        "ai_authored_pr_text",
+        "evidence"
+      ],
+      "properties": {
+        "accepts_external_prs": { "type": "boolean" },
+        "requires_issue_first": { "type": "boolean" },
+        "ai_assisted_code": { "$ref": "#/$defs/stance" },
+        "ai_authored_pr_text": { "$ref": "#/$defs/stance" },
+        "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim", "source", "url", "quote"],
+      "properties": {
+        "claim": { "$ref": "#/$defs/claim" },
+        "source": { "type": "string", "minLength": 1 },
+        "url": {
+          "type": "string",
+          "pattern": "^https://github\\.com/[^/]+/[^/]+/blob/[0-9a-f]{40}/.+#L[0-9]+(-L[0-9]+)?$"
+        },
+        "quote": { "type": "string", "minLength": 1, "maxLength": 600 }
+      }
+    },
+    "merge_stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sample_size", "window_days", "bots_excluded"],
+      "properties": {
+        "sample_size": { "type": "integer", "minimum": 0 },
+        "window_days": { "type": "number", "minimum": 0 },
+        "casual_author_acceptance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "distinct_casual_authors": { "type": "integer", "minimum": 0 },
+        "median_days_to_merge": { "type": "number", "minimum": 0 },
+        "p90_days_to_merge": { "type": "number", "minimum": 0 },
+        "bots_excluded": { "const": true }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "archived": { "const": true } }, "required": ["archived"] },
+      "then": { "not": { "required": ["merge_stats"] } },
+      "else": { "required": ["merge_stats"] }
+    },
+    {
+      "if": {
+        "properties": { "insufficient_sample": { "const": true } },
+        "required": ["insufficient_sample"]
+      },
+      "then": {
+        "properties": {
+          "merge_stats": {
+            "not": {
+              "anyOf": [
+                { "required": ["casual_author_acceptance"] },
+                { "required": ["median_days_to_merge"] },
+                { "required": ["p90_days_to_merge"] }
+              ]
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "merge_stats": {
+            "required": [
+              "casual_author_acceptance",
+              "distinct_casual_authors",
+              "median_days_to_merge",
+              "p90_days_to_merge"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

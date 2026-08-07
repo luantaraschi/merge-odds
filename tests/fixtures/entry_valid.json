@@ -1,0 +1,28 @@
+{
+  "repo": "payloadcms/payload",
+  "measured_at": "2026-08-07",
+  "default_branch_sha": "0123456789abcdef0123456789abcdef01234567",
+  "policy": {
+    "accepts_external_prs": true,
+    "requires_issue_first": false,
+    "ai_assisted_code": "allowed",
+    "ai_authored_pr_text": "not_stated",
+    "evidence": [
+      {
+        "claim": "ai_assisted_code",
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/payloadcms/payload/blob/0123456789abcdef0123456789abcdef01234567/CONTRIBUTING.md#L118-L120",
+        "quote": "Claude Code is supported."
+      }
+    ]
+  },
+  "merge_stats": {
+    "sample_size": 100,
+    "window_days": 34.0,
+    "casual_author_acceptance": 0.68,
+    "distinct_casual_authors": 21,
+    "median_days_to_merge": 0.9,
+    "p90_days_to_merge": 21.8,
+    "bots_excluded": true
+  }
+}
