@@ -25,7 +25,7 @@
   "insufficient_sample": true,
   "merge_stats": {
     "sample_size": 99,
-    "window_days": 27.313,
+    "median_close_age_days": 3.4585,
     "bots_excluded": true,
     "casual_sample_size": 12
   }

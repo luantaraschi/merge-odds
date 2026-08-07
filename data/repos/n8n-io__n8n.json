@@ -36,12 +36,12 @@
   },
   "merge_stats": {
     "sample_size": 86,
-    "window_days": 1.7763,
+    "median_close_age_days": 0.8055,
     "bots_excluded": true,
-    "casual_sample_size": 62,
-    "casual_author_acceptance": 0.5,
-    "distinct_merged_casual_authors": 25,
-    "median_days_to_merge": 0.7626,
-    "p90_days_to_merge": 2.7194
+    "casual_sample_size": 59,
+    "casual_author_acceptance": 0.4746,
+    "distinct_merged_casual_authors": 23,
+    "median_days_to_merge": 0.5718,
+    "p90_days_to_merge": 2.8847
   }
 }

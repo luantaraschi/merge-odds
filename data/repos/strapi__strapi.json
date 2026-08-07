@@ -11,7 +11,7 @@
   },
   "merge_stats": {
     "sample_size": 83,
-    "window_days": 2061.3202,
+    "median_close_age_days": 6.4098,
     "bots_excluded": true,
     "casual_sample_size": 41,
     "casual_author_acceptance": 0.4146,

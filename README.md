@@ -9,16 +9,16 @@ Maintainers in 2026 spend real hours closing pull requests they never asked for,
 Column order is deliberate. The first four columns after the project name are policy, read straight from the project's own files: whether it accepts external pull requests, whether it wants an issue opened first, and what it says about AI-assisted code and about AI-written pull request text, listed as two separate claims because a project can allow one and forbid the other. The columns after that are statistics from a sample of the 100 closed pull requests the project most recently touched, which is the closest the GitHub API can get to "most recently closed": it can sort by when a pull request was last updated, not by when it was closed. `Sample recency` reports how many days separate the newest close in the sample from the median close, so a stray old pull request that got a late comment cannot pass itself off as recent activity. Policy comes first because it is what the project asked for, in its own words. The numbers come after because they describe a sample of other people's past pull requests, not a promise, and not a forecast for yours.
 
 <!-- merge-odds:table:start -->
-| Project | External PRs | Issue first | AI code | AI PR text | Casual acceptance | Median | p90 | Window | Measured |
+| Project | External PRs | Issue first | AI code | AI PR text | Casual acceptance | Median | p90 | Sample recency | Measured |
 |---|---|---|---|---|---|---|---|---|---|
-| [directus/directus](https://github.com/directus/directus) | yes | — | conditional | disallowed | 0.3261 | 4.0867 d | 49.6518 d | 102.1549 d | 2026-08-07 |
-| [n8n-io/n8n](https://github.com/n8n-io/n8n) | yes | yes | conditional | disallowed | 0.5 | 0.7626 d | 2.7194 d | 1.7763 d | 2026-08-07 |
-| [payloadcms/payload](https://github.com/payloadcms/payload) | yes | — | allowed | — | — | — | — | 27.313 d | 2026-08-07 |
-| [prisma/prisma](https://github.com/prisma/prisma) | yes | yes | allowed | — | — | — | — | 317.358 d | 2026-08-07 |
-| [strapi/strapi](https://github.com/strapi/strapi) | yes | — | — | — | 0.4146 | 5.9918 d | 67.6427 d | 2061.3202 d | 2026-08-07 |
-| [supabase/supabase](https://github.com/supabase/supabase) | yes | yes | — | — | 0.9 | 0.9199 d | 10.7321 d | 3.5642 d | 2026-08-07 |
-| [twentyhq/twenty](https://github.com/twentyhq/twenty) | yes | — | — | — | — | — | — | 3.7948 d | 2026-08-07 |
-| [withastro/astro](https://github.com/withastro/astro) | yes | — | — | — | 0.5641 | 3.2643 d | 15.0786 d | 101.2053 d | 2026-08-07 |
+| [directus/directus](https://github.com/directus/directus) | yes | — | conditional | disallowed | 0.3261 | 4.0867 d | 49.6518 d | 51.4502 d | 2026-08-07 |
+| [n8n-io/n8n](https://github.com/n8n-io/n8n) | yes | yes | conditional | disallowed | 0.4746 | 0.5718 d | 2.8847 d | 0.8055 d | 2026-08-07 |
+| [payloadcms/payload](https://github.com/payloadcms/payload) | yes | — | allowed | — | — | — | — | 3.4585 d | 2026-08-07 |
+| [prisma/prisma](https://github.com/prisma/prisma) | yes | yes | allowed | — | — | — | — | 6.7969 d | 2026-08-07 |
+| [strapi/strapi](https://github.com/strapi/strapi) | yes | — | — | — | 0.4146 | 5.9918 d | 67.6427 d | 6.4098 d | 2026-08-07 |
+| [supabase/supabase](https://github.com/supabase/supabase) | yes | yes | — | — | 0.9 | 0.9199 d | 10.7321 d | 1.7788 d | 2026-08-07 |
+| [twentyhq/twenty](https://github.com/twentyhq/twenty) | yes | — | — | — | — | — | — | 1.6474 d | 2026-08-07 |
+| [withastro/astro](https://github.com/withastro/astro) | yes | — | — | — | 0.5641 | 3.2643 d | 15.0786 d | 9.958 d | 2026-08-07 |
 <!-- merge-odds:table:end -->
 
 ## Limitations
