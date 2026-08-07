@@ -1,0 +1,21 @@
+{
+  "repo": "aaa/restricted",
+  "measured_at": "2026-08-01",
+  "default_branch_sha": "1111111111111111111111111111111111111111",
+  "policy": {
+    "accepts_external_prs": false,
+    "requires_issue_first": true,
+    "ai_assisted_code": "disallowed",
+    "ai_authored_pr_text": "disallowed",
+    "evidence": [
+      {
+        "claim": "accepts_external_prs",
+        "source": ".github/PULL_REQUEST_TEMPLATE.md",
+        "url": "https://github.com/aaa/restricted/blob/1111111111111111111111111111111111111111/.github/PULL_REQUEST_TEMPLATE.md#L2",
+        "quote": "We are no longer accepting external pull requests."
+      }
+    ]
+  },
+  "insufficient_sample": true,
+  "merge_stats": { "sample_size": 6, "window_days": 400.0, "bots_excluded": true }
+}
