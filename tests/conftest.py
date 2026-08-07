@@ -24,3 +24,10 @@ _vspec = importlib.util.spec_from_file_location(
 validate_module = importlib.util.module_from_spec(_vspec)
 sys.modules["validate_module"] = validate_module
 _vspec.loader.exec_module(validate_module)
+
+_rspec = importlib.util.spec_from_file_location(
+    "refresh_module", ROOT / "scripts" / "refresh.py"
+)
+refresh_module = importlib.util.module_from_spec(_rspec)
+sys.modules["refresh_module"] = refresh_module
+_rspec.loader.exec_module(refresh_module)
