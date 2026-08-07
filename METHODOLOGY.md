@@ -2,9 +2,13 @@
 
 ## What is measured
 
-Every entry has two layers. The first is policy: whether the project accepts external pull requests, whether it wants an issue opened before one, what it says about AI-assisted code, and what it says, separately, about AI-written pull request text. Every policy claim carries a quote copied verbatim from a file in the project's own repository, pinned to the commit it was read at. The second layer is statistics, computed from a sample of the 100 closed pull requests the project most recently touched: acceptance for casual outside authors, and how long a merge took at the median and at the 90th percentile.
+Every entry has two layers. The first is policy: whether the project accepts external pull requests, whether it wants an issue opened before one, what it says about AI-assisted code, and what it says, separately, about AI-written pull request text. The two boolean claims each have a default -- `accepts_external_prs` defaults to `true`, `requires_issue_first` to `false` -- and the two AI claims default to `not_stated`. A claim that departs from its default carries a quote copied verbatim from a file in the project's own repository, pinned to the commit it was read at. A claim still at its default carries no quote, because there is nothing to quote: it records that nothing in the files read said otherwise, not that the project affirmatively granted permission. The second layer is statistics, computed from a sample of the 100 closed pull requests the project most recently touched: acceptance for casual outside authors, and, among the merged pull requests from that same casual-author group, how long a merge took at the median and at the 90th percentile -- not the sample as a whole.
 
 Policy is listed first because it is what the project asked for, in its own words, and reading a quote takes less trust than reading a number. Statistics come second because they describe what happened to a sample of other people in the past. They are not a commitment from the project and not a forecast for the next pull request.
+
+## What `requires_issue_first` means
+
+`requires_issue_first: true` means the project requires a prior issue or discussion for at least some class of change -- not necessarily every change. prisma asks for an issue before "anything substantive" but says typo fixes, doc nits, and small bug fixes can go straight to a pull request. supabase asks for a Discussion before a new feature, not before a bug fix. The boolean cannot carry that scope; the quote in the entry's `policy.evidence` can, which is why the rendered table links this column's "yes" to the quote instead of leaving it to stand alone. Read the quote before assuming the rule applies to the change you have in mind.
 
 ## Casual-author acceptance
 
@@ -31,6 +35,10 @@ The sample behind every statistic is the 100 closed pull requests GitHub reports
 `median_close_age_days` is built to survive that outlier. It is the gap between the newest closed date in the sample and the median closed date: half the sample closed within this many days of the newest close. One old pull request pulled in by a comment can move the oldest date in the sample by years without moving the median at all.
 
 A value close to zero on a busy repository means the queue moves fast enough that a hundred pull requests fit into a day or two. That usually means the project's own team dominates the sample, the same trap described above for `author_association`. Read it together with casual acceptance, not on its own. A high acceptance rate paired with a low median close age is closer to evidence of an easy project; the same rate paired with a high median close age is closer to evidence that few outside pull requests arrive at all.
+
+## What the weekly refresh does
+
+The weekly refresh recomputes every entry's statistics from a fresh pull request sample and re-fetches each file already named in `policy.evidence`, checking that the quoted text is still present at the current commit. If a quote is gone or the file moved, the entry is marked `policy_stale`. That is the entirety of what it checks. It does not re-read a project's policy files looking for new rules, and it does not scan any file that was not already quoted in the entry. A rule the project adds after the entry was written -- a new AI policy, a fresh "issue first" requirement -- is invisible to it, because there is no existing quote for the refresh to fail to find. An entry with an empty `policy.evidence` array, as several in this dataset are, can never be marked stale by this process no matter how much time passes or how much the project's rules change, because the loop that checks for staleness has nothing to iterate over. `measured_at` advancing every week describes when the statistics were last recomputed, not when the policy was last read for the first time.
 
 ## What is not measured
 
