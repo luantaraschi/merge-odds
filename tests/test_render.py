@@ -134,3 +134,65 @@ def test_splice_raises_when_the_end_marker_appears_twice():
 
     with pytest.raises(ValueError):
         splice(readme, "NEW")
+
+
+def test_policy_cell_with_evidence_links_to_it():
+    # entry_valid.json carries one evidence item, for ai_assisted_code.
+    entry = load("entry_valid.json")
+    url = entry["policy"]["evidence"][0]["url"]
+
+    row = next(
+        line
+        for line in render_table([entry]).splitlines()
+        if "payloadcms/payload" in line
+    )
+
+    assert f"[allowed]({url})" in row
+
+
+def test_policy_cell_without_evidence_stays_plain_text():
+    # entry_valid.json has no evidence for accepts_external_prs.
+    entry = load("entry_valid.json")
+
+    row = next(
+        line
+        for line in render_table([entry]).splitlines()
+        if "payloadcms/payload" in line
+    )
+
+    assert "[yes](" not in row
+    assert "| yes |" in row
+
+
+def test_restricted_no_cell_links_to_its_evidence():
+    # entry_restricted.json's accepts_external_prs: false is backed by
+    # evidence -- the bolded "no" itself must carry the link.
+    entry = load("entry_restricted.json")
+    url = entry["policy"]["evidence"][0]["url"]
+
+    row = next(
+        line
+        for line in render_table([entry]).splitlines()
+        if "aaa/restricted" in line
+    )
+
+    assert f"[**no**]({url})" in row
+
+
+def test_statistics_are_rounded_to_two_decimals_in_the_render_layer_only():
+    entry = load("entry_valid.json")
+    entry = json.loads(json.dumps(entry))  # deep copy before mutating
+    entry["merge_stats"]["casual_author_acceptance"] = 0.516789
+    entry["merge_stats"]["median_days_to_merge"] = 4.086701
+    entry["merge_stats"]["p90_days_to_merge"] = 49.651899
+
+    row = next(
+        line
+        for line in render_table([entry]).splitlines()
+        if "payloadcms/payload" in line
+    )
+
+    assert "0.52" in row
+    assert "4.09 d" in row
+    assert "49.65 d" in row
+    assert "0.516789" not in row

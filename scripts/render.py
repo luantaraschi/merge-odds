@@ -40,9 +40,23 @@ STANCE_LABEL = {
 
 
 def _number(stats: dict, key: str, suffix: str = "") -> str:
+    # Rendering-layer precision only: the stored data keeps its full
+    # figures, but four decimal places on a median of a few dozen values
+    # is false precision on the page.
     if key not in stats:
         return DASH
-    return f"{stats[key]}{suffix}"
+    return f"{round(stats[key], 2)}{suffix}"
+
+
+def _evidence_url(policy: dict, claim: str) -> str | None:
+    for item in policy["evidence"]:
+        if item["claim"] == claim:
+            return item["url"]
+    return None
+
+
+def _cell(text: str, url: str | None) -> str:
+    return f"[{text}]({url})" if url else text
 
 
 def _row(entry: dict) -> str:
@@ -51,10 +65,22 @@ def _row(entry: dict) -> str:
     name = entry["repo"]
     cells = [
         f"[{name}](https://github.com/{name})",
-        "yes" if policy["accepts_external_prs"] else "**no**",
-        "yes" if policy["requires_issue_first"] else DASH,
-        STANCE_LABEL[policy["ai_assisted_code"]],
-        STANCE_LABEL[policy["ai_authored_pr_text"]],
+        _cell(
+            "yes" if policy["accepts_external_prs"] else "**no**",
+            _evidence_url(policy, "accepts_external_prs"),
+        ),
+        _cell(
+            "yes" if policy["requires_issue_first"] else DASH,
+            _evidence_url(policy, "requires_issue_first"),
+        ),
+        _cell(
+            STANCE_LABEL[policy["ai_assisted_code"]],
+            _evidence_url(policy, "ai_assisted_code"),
+        ),
+        _cell(
+            STANCE_LABEL[policy["ai_authored_pr_text"]],
+            _evidence_url(policy, "ai_authored_pr_text"),
+        ),
         _number(stats, "casual_author_acceptance"),
         _number(stats, "median_days_to_merge", " d"),
         _number(stats, "p90_days_to_merge", " d"),
