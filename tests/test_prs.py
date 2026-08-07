@@ -78,7 +78,11 @@ def test_a_thin_casual_denominator_is_insufficient_even_with_a_healthy_human_sam
     assert "distinct_merged_casual_authors" not in result["merge_stats"]
 
 
-def test_window_days_spans_the_whole_sample():
+def test_median_close_age_days_measures_the_bulk_not_the_span():
+    """20 pull requests closed on days 0..19: the newest closed on day 19,
+    the median close date sits between day 9 and day 10 (day 9.5), so half
+    the sample closed within 9.5 days of the newest close. A single
+    outlier at day 0 cannot drag this the way it drags a min-to-max span."""
     sample = [
         pr(f"person{i}", opened_day=0, closed_day=i, merged=True)
         for i in range(MIN_HUMAN_SAMPLE)
@@ -86,7 +90,7 @@ def test_window_days_spans_the_whole_sample():
 
     result = merge_stats(sample)
 
-    assert result["merge_stats"]["window_days"] == float(MIN_HUMAN_SAMPLE - 1)
+    assert result["merge_stats"]["median_close_age_days"] == 9.5
 
 
 def test_small_sample_reports_insufficient_and_omits_percentages():
@@ -97,7 +101,7 @@ def test_small_sample_reports_insufficient_and_omits_percentages():
     assert result["insufficient_sample"] is True
     assert result["merge_stats"] == {
         "sample_size": 5,
-        "window_days": 4.0,
+        "median_close_age_days": 2.0,
         "bots_excluded": True,
         "casual_sample_size": 5,
     }

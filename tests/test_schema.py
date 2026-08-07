@@ -36,10 +36,10 @@ def test_url_must_pin_a_full_sha():
     assert errors(entry), "branch-pinned URLs rot; only full SHAs are accepted"
 
 
-def test_stats_require_a_window():
+def test_stats_require_a_median_close_age():
     entry = json.loads(json.dumps(VALID))
-    del entry["merge_stats"]["window_days"]
-    assert errors(entry), "acceptance without a window is meaningless"
+    del entry["merge_stats"]["median_close_age_days"]
+    assert errors(entry), "acceptance without a recency measure is meaningless"
 
 
 def test_insufficient_sample_forbids_percentages():
@@ -49,7 +49,7 @@ def test_insufficient_sample_forbids_percentages():
 
     entry["merge_stats"] = {
         "sample_size": 8,
-        "window_days": 12.0,
+        "median_close_age_days": 12.0,
         "casual_sample_size": 8,
         "bots_excluded": True,
     }

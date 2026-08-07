@@ -17,16 +17,16 @@ def test_policy_columns_come_before_statistics():
 
     assert header.index("External PRs") < header.index("Casual acceptance")
     assert header.index("AI PR text") < header.index("Median")
-    assert header.index("AI PR text") < header.index("Window")
+    assert header.index("AI PR text") < header.index("Sample recency")
 
 
-def test_window_column_sits_between_p90_and_measured():
+def test_sample_recency_column_sits_between_p90_and_measured():
     header = render_table([load("entry_valid.json")]).splitlines()[0]
 
-    assert header.index("p90") < header.index("Window") < header.index("Measured")
+    assert header.index("p90") < header.index("Sample recency") < header.index("Measured")
 
 
-def test_window_column_shows_the_day_count():
+def test_sample_recency_column_shows_the_day_count():
     row = next(
         line
         for line in render_table([load("entry_valid.json")]).splitlines()
@@ -36,7 +36,7 @@ def test_window_column_shows_the_day_count():
     assert "34.0 d" in row
 
 
-def test_window_column_shows_a_dash_when_absent():
+def test_sample_recency_column_shows_a_dash_when_absent():
     archived = dict(load("entry_valid.json"), archived=True)
     del archived["merge_stats"]
 

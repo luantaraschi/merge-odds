@@ -27,7 +27,7 @@ COLUMNS = (
     "Casual acceptance",
     "Median",
     "p90",
-    "Window",
+    "Sample recency",
     "Measured",
 )
 
@@ -58,7 +58,7 @@ def _row(entry: dict) -> str:
         _number(stats, "casual_author_acceptance"),
         _number(stats, "median_days_to_merge", " d"),
         _number(stats, "p90_days_to_merge", " d"),
-        _number(stats, "window_days", " d"),
+        _number(stats, "median_close_age_days", " d"),
         entry["measured_at"],
     ]
     return "| " + " | ".join(cells) + " |"

@@ -2,7 +2,7 @@
 
 ## What is measured
 
-Every entry has two layers. The first is policy: whether the project accepts external pull requests, whether it wants an issue opened before one, what it says about AI-assisted code, and what it says, separately, about AI-written pull request text. Every policy claim carries a quote copied verbatim from a file in the project's own repository, pinned to the commit it was read at. The second layer is statistics, computed from a sample of the project's 100 most recently closed pull requests: acceptance for casual outside authors, and how long a merge took at the median and at the 90th percentile.
+Every entry has two layers. The first is policy: whether the project accepts external pull requests, whether it wants an issue opened before one, what it says about AI-assisted code, and what it says, separately, about AI-written pull request text. Every policy claim carries a quote copied verbatim from a file in the project's own repository, pinned to the commit it was read at. The second layer is statistics, computed from a sample of the 100 closed pull requests the project most recently touched: acceptance for casual outside authors, and how long a merge took at the median and at the 90th percentile.
 
 Policy is listed first because it is what the project asked for, in its own words, and reading a quote takes less trust than reading a number. Statistics come second because they describe what happened to a sample of other people in the past. They are not a commitment from the project and not a forecast for the next pull request.
 
@@ -24,9 +24,13 @@ Filtering to `FIRST_TIME_CONTRIBUTOR` looks like the fix, and it inverts the bia
 
 Dependabot and Renovate open pull requests and merge them on a schedule, in minutes, without the review a human contribution gets. Left in a sample, they pull the median toward zero and make a project look far faster to merge into than it is for a person. Bots are identified and removed before any statistic in this dataset is computed, not filtered out afterward from numbers that already include them.
 
-## Why the window matters
+## Why median close age matters
 
-`window_days` records how many days the 100-pull-request sample actually spans. A short window means the project is busy: a hundred pull requests closed quickly, recently. A long window means the opposite. The project is quiet, and a high acceptance rate over a long window is not evidence that the project is easy to get a pull request into. It is evidence that few pull requests arrive at all. Read acceptance and window together. Acceptance on its own can describe either a welcoming project or an empty one.
+The sample behind every statistic is the 100 closed pull requests GitHub reports as most recently touched, not the 100 most recently closed. The GitHub API has no way to sort closed pull requests by close date, only by when they were last updated. A pull request closed years ago that got a comment last week counts as recently touched and enters the sample. Most old, already-closed pull requests never get touched again, so most of the time this makes no difference. Occasionally it does, and a single old pull request sits inside an otherwise current sample.
+
+`median_close_age_days` is built to survive that outlier. It is the gap between the newest closed date in the sample and the median closed date: half the sample closed within this many days of the newest close. One old pull request pulled in by a comment can move the oldest date in the sample by years without moving the median at all.
+
+A value close to zero on a busy repository means the queue moves fast enough that a hundred pull requests fit into a day or two. That usually means the project's own team dominates the sample, the same trap described above for `author_association`. Read it together with casual acceptance, not on its own. A high acceptance rate paired with a low median close age is closer to evidence of an easy project; the same rate paired with a high median close age is closer to evidence that few outside pull requests arrive at all.
 
 ## What is not measured
 

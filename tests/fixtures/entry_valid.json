@@ -18,7 +18,7 @@
   },
   "merge_stats": {
     "sample_size": 100,
-    "window_days": 34.0,
+    "median_close_age_days": 34.0,
     "casual_sample_size": 25,
     "casual_author_acceptance": 0.68,
     "distinct_merged_casual_authors": 21,

@@ -70,17 +70,30 @@ def _days(pull: PullRequest) -> float:
     return (pull.merged_at - pull.created_at).total_seconds() / 86400
 
 
+def _median_datetime(values: list[datetime]) -> datetime:
+    ordered = sorted(values)
+    count = len(ordered)
+    middle = count // 2
+    if count % 2 == 1:
+        return ordered[middle]
+    return ordered[middle - 1] + (ordered[middle] - ordered[middle - 1]) / 2
+
+
 def merge_stats(sample: list[PullRequest]) -> dict:
     humans = [pull for pull in sample if not pull.is_bot and pull.author]
     stats: dict[str, object] = {
         "sample_size": len(humans),
-        "window_days": 0.0,
+        "median_close_age_days": 0.0,
         "bots_excluded": True,
     }
 
     if humans:
         closed = [pull.closed_at for pull in humans]
-        stats["window_days"] = round((max(closed) - min(closed)).total_seconds() / 86400, 4)
+        newest = max(closed)
+        median_closed = _median_datetime(closed)
+        stats["median_close_age_days"] = round(
+            (newest - median_closed).total_seconds() / 86400, 4
+        )
 
     appearances = Counter(pull.author for pull in humans)
     casual = [
