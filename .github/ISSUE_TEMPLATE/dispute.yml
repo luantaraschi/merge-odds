@@ -1,0 +1,31 @@
+name: Dispute an entry
+description: Something we published about a project is wrong or out of date.
+title: "Dispute: owner/repo"
+labels: ["dispute"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If you maintain the project in question, say so and this goes to the
+        front of the queue. Nobody knows a project's contribution policy
+        better than the people who wrote it.
+  - type: input
+    id: repo
+    attributes:
+      label: Entry
+      placeholder: owner/repo
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong
+    validations:
+      required: true
+  - type: input
+    id: proof
+    attributes:
+      label: Link to the file that shows it
+      description: A github.com/.../blob/<sha>/... link, so the line cannot move.
+    validations:
+      required: true

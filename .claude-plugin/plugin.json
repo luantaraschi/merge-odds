@@ -2,6 +2,6 @@
   "name": "merge-odds",
   "version": "0.1.0",
   "description": "Check whether a project accepts outside contributions, and under what rules, before doing any work.",
-  "author": { "name": "Luan Taraschi" },
+  "author": { "name": "Luan Taraschi", "email": "130802253+luantaraschi@users.noreply.github.com" },
   "license": "MIT"
 }

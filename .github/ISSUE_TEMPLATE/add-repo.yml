@@ -1,0 +1,29 @@
+name: Measure a project
+description: Ask for a project to be added to the dataset, or claim one to measure yourself.
+title: "Measure: owner/repo"
+labels: ["good first issue"]
+body:
+  - type: input
+    id: repo
+    attributes:
+      label: Project
+      placeholder: owner/repo
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        You can do this yourself in about ten minutes:
+
+            python scripts/measure.py owner/repo --write
+
+        Then open the generated file, read each quote in the `_review` block
+        against its source file, set the four policy values, move the quotes
+        you used into `evidence`, and delete `_review`.
+
+        See CONTRIBUTING.md. One project per pull request.
+  - type: textarea
+    id: why
+    attributes:
+      label: Anything worth knowing
+      description: Optional. A policy you already spotted, a rename, an archived repo.
