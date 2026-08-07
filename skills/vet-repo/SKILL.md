@@ -50,8 +50,9 @@ If there is no entry yet, measure one:
 
     python scripts/measure.py owner/repo
 
-This needs `GITHUB_TOKEN` set in the environment. Unauthenticated requests
-are capped at 60 an hour, and a single measurement uses several of them.
+This needs `GITHUB_TOKEN` set in the environment, and `pip install -e .`
+run from this plugin's root first. Unauthenticated requests are capped at
+60 an hour, and a single measurement uses several of them.
 
 ## Step 3: read the policy files
 

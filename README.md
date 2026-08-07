@@ -8,13 +8,13 @@ Maintainers in 2026 spend real hours closing pull requests they never asked for,
 
 Column order is deliberate. The first four columns after the project name are policy, read straight from the project's own files: whether it accepts external pull requests, whether it wants an issue opened first, and what it says about AI-assisted code and about AI-written pull request text, listed as two separate claims because a project can allow one and forbid the other. The columns after that are statistics from a sample of the 100 closed pull requests the project most recently touched, which is the closest the GitHub API can get to "most recently closed": it can sort by when a pull request was last updated, not by when it was closed. `Sample recency` reports how many days separate the newest close in the sample from the median close, so a stray old pull request that got a late comment cannot pass itself off as recent activity. `Median` and `p90` are not computed over the whole sample: they cover only the merged pull requests from casual outside authors, the same group `Casual acceptance` is drawn from, since a regular committer's merge speed says nothing about how long an outside pull request waits. Policy comes first because it is what the project asked for, in its own words. The numbers come after because they describe a sample of other people's past pull requests, not a promise, and not a forecast for yours.
 
-Where a policy cell links to text, the link goes to the quote it was read from, pinned to the commit it was read at. A cell with no link means the entry found nothing in the project's files that departed from the default for that claim -- not that the project said yes.
+Where a policy cell links to text, the link goes to a quote it was read from, pinned to the commit it was read at. Where a claim rests on more than one quote, the link goes to the last one, since that is the one carrying any condition that qualifies an earlier-stated permission. A cell with no link means the entry found nothing in the project's files that departed from the default for that claim -- not that the project said yes.
 
 <!-- merge-odds:table:start -->
 | Project | External PRs | Issue first | AI code | AI PR text | Casual acceptance | Median | p90 | Sample recency | Measured |
 |---|---|---|---|---|---|---|---|---|---|
-| [directus/directus](https://github.com/directus/directus) | yes | — | [conditional](https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L5-L6) | [disallowed](https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L29-L30) | 0.33 | 4.09 d | 49.65 d | 51.45 d | 2026-08-07 |
-| [n8n-io/n8n](https://github.com/n8n-io/n8n) | yes | [yes](https://github.com/n8n-io/n8n/blob/c0d863ec3cbad249ac6e416e0c94a500d237a4f7/CONTRIBUTING.md#L451-L458) | [conditional](https://github.com/n8n-io/n8n/blob/c0d863ec3cbad249ac6e416e0c94a500d237a4f7/CONTRIBUTING.md#L501) | [disallowed](https://github.com/n8n-io/n8n/blob/c0d863ec3cbad249ac6e416e0c94a500d237a4f7/CONTRIBUTING.md#L505-L506) | 0.47 | 0.57 d | 2.88 d | 0.81 d | 2026-08-07 |
+| [directus/directus](https://github.com/directus/directus) | yes | — | [conditional](https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L21-L22) | [disallowed](https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L29-L30) | 0.33 | 4.09 d | 49.65 d | 51.45 d | 2026-08-07 |
+| [n8n-io/n8n](https://github.com/n8n-io/n8n) | yes | [yes](https://github.com/n8n-io/n8n/blob/c0d863ec3cbad249ac6e416e0c94a500d237a4f7/CONTRIBUTING.md#L451-L458) | [conditional](https://github.com/n8n-io/n8n/blob/c0d863ec3cbad249ac6e416e0c94a500d237a4f7/CONTRIBUTING.md#L503-L504) | [disallowed](https://github.com/n8n-io/n8n/blob/c0d863ec3cbad249ac6e416e0c94a500d237a4f7/CONTRIBUTING.md#L505-L506) | 0.47 | 0.57 d | 2.88 d | 0.81 d | 2026-08-07 |
 | [payloadcms/payload](https://github.com/payloadcms/payload) | yes | — | — | — | — | — | — | 3.46 d | 2026-08-07 |
 | [prisma/prisma](https://github.com/prisma/prisma) | yes | [yes](https://github.com/prisma/prisma/blob/06ea3dc3775d399a0a501d6d40ba6999a1c1346d/CONTRIBUTING.md#L17) | [allowed](https://github.com/prisma/prisma/blob/06ea3dc3775d399a0a501d6d40ba6999a1c1346d/CONTRIBUTING.md#L118) | — | — | — | — | 6.8 d | 2026-08-07 |
 | [strapi/strapi](https://github.com/strapi/strapi) | yes | — | — | — | 0.41 | 5.99 d | 67.64 d | 6.41 d | 2026-08-07 |
@@ -35,9 +35,14 @@ skill under `skills/vet-repo/`.
 - **As a plugin:** `/plugin marketplace add luantaraschi/merge-odds`, then
   `/plugin install merge-odds`.
 - **By cloning:** `git clone` this repository. The skill and its data
-  live entirely inside it; nothing else needs to be installed.
+  live entirely inside it.
 
-Either way, `skills/vet-repo/SKILL.md` explains that the paths it uses
+Either way, reading the dataset itself needs nothing extra. Running
+`scripts/measure.py` or `scripts/validate_data.py` needs Python 3.11 or
+later and `pip install -e .` from this repository's root first; neither
+the plugin install nor a bare clone installs those dependencies for you.
+
+`skills/vet-repo/SKILL.md` explains that the paths it uses
 (`data/repos/...`, `scripts/measure.py`) are relative to this repository's
 own root, not to the project you happen to be working in when you invoke
 the skill.
