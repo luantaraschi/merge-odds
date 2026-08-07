@@ -1,0 +1,35 @@
+{
+  "repo": "bbb/conditional",
+  "measured_at": "2026-08-07",
+  "default_branch_sha": "2222222222222222222222222222222222222222",
+  "policy": {
+    "accepts_external_prs": true,
+    "requires_issue_first": false,
+    "ai_assisted_code": "allowed_with_conditions",
+    "ai_authored_pr_text": "not_stated",
+    "evidence": [
+      {
+        "claim": "ai_assisted_code",
+        "source": "ai_policy.md",
+        "url": "https://github.com/bbb/conditional/blob/2222222222222222222222222222222222222222/ai_policy.md#L5-L6",
+        "quote": "We welcome the use of AI tools to assist with development in this repository."
+      },
+      {
+        "claim": "ai_assisted_code",
+        "source": "ai_policy.md",
+        "url": "https://github.com/bbb/conditional/blob/2222222222222222222222222222222222222222/ai_policy.md#L21-L22",
+        "quote": "The use of fully autonomous agents to create pull requests is not allowed."
+      }
+    ]
+  },
+  "merge_stats": {
+    "sample_size": 100,
+    "median_close_age_days": 10.0,
+    "casual_sample_size": 20,
+    "casual_author_acceptance": 0.5,
+    "distinct_merged_casual_authors": 10,
+    "median_days_to_merge": 2.0,
+    "p90_days_to_merge": 8.0,
+    "bots_excluded": true
+  }
+}

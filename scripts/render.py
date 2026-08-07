@@ -49,10 +49,17 @@ def _number(stats: dict, key: str, suffix: str = "") -> str:
 
 
 def _evidence_url(policy: dict, claim: str) -> str | None:
+    # A claim can carry more than one quote (a permission followed by the
+    # condition that qualifies it). The last one is linked, not the first,
+    # because in every multi-quote case so far the qualifying condition is
+    # written after the permission -- linking the first would point the
+    # reader at only the half of a conditional stance that reads as an
+    # unconditional yes.
+    url = None
     for item in policy["evidence"]:
         if item["claim"] == claim:
-            return item["url"]
-    return None
+            url = item["url"]
+    return url
 
 
 def _cell(text: str, url: str | None) -> str:

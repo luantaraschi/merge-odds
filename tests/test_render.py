@@ -179,6 +179,27 @@ def test_restricted_no_cell_links_to_its_evidence():
     assert f"[**no**]({url})" in row
 
 
+def test_policy_cell_with_multiple_quotes_links_to_the_last_one():
+    # entry_multi_quote.json carries two evidence items for ai_assisted_code:
+    # a permission (#L5-L6) followed by the condition that qualifies it
+    # (#L21-L22). The cell must link to the qualifying quote, not the
+    # permission read alone, since linking the first would point the
+    # reader at only the half of a conditional stance that contradicts
+    # the "conditional" label on the cell.
+    entry = load("entry_multi_quote.json")
+    evidence = entry["policy"]["evidence"]
+    assert len(evidence) > 1
+
+    row = next(
+        line
+        for line in render_table([entry]).splitlines()
+        if "bbb/conditional" in line
+    )
+
+    assert f"[conditional]({evidence[-1]['url']})" in row
+    assert evidence[0]["url"] not in row
+
+
 def test_statistics_are_rounded_to_two_decimals_in_the_render_layer_only():
     entry = load("entry_valid.json")
     entry = json.loads(json.dumps(entry))  # deep copy before mutating
