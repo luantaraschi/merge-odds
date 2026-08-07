@@ -17,6 +17,36 @@ def test_policy_columns_come_before_statistics():
 
     assert header.index("External PRs") < header.index("Casual acceptance")
     assert header.index("AI PR text") < header.index("Median")
+    assert header.index("AI PR text") < header.index("Window")
+
+
+def test_window_column_sits_between_p90_and_measured():
+    header = render_table([load("entry_valid.json")]).splitlines()[0]
+
+    assert header.index("p90") < header.index("Window") < header.index("Measured")
+
+
+def test_window_column_shows_the_day_count():
+    row = next(
+        line
+        for line in render_table([load("entry_valid.json")]).splitlines()
+        if "payloadcms/payload" in line
+    )
+
+    assert "34.0 d" in row
+
+
+def test_window_column_shows_a_dash_when_absent():
+    archived = dict(load("entry_valid.json"), archived=True)
+    del archived["merge_stats"]
+
+    row = next(
+        line
+        for line in render_table([archived]).splitlines()
+        if "payloadcms/payload" in line
+    )
+
+    assert "| — |" in row
 
 
 def test_rows_are_sorted_by_name_not_by_any_score():
@@ -28,14 +58,19 @@ def test_rows_are_sorted_by_name_not_by_any_score():
 
 
 def test_insufficient_sample_shows_a_dash_not_a_number():
+    table = render_table([load("entry_restricted.json")])
+    header_cells = table.splitlines()[0].split(" | ")
     row = next(
         line
-        for line in render_table([load("entry_restricted.json")]).splitlines()
+        for line in table.splitlines()
         if "aaa/restricted" in line
     )
+    cells = row.split(" | ")
 
     assert "|  |" in row or "| — |" in row
-    assert "0.0" not in row
+    stat_columns = ("Casual acceptance", "Median", "p90")
+    for column in stat_columns:
+        assert cells[header_cells.index(column)] == "—"
 
 
 def test_splice_replaces_only_between_the_markers():
