@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 import requests
 
-from merge_odds.github import GitHub, RepoNotFound
+from merge_odds.github import MAX_ATTEMPTS, GitHub, GitHubUnavailable, RepoNotFound
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -84,6 +84,24 @@ def test_raw_file_returns_none_on_404():
     assert GitHub(session=session).raw_file("a/b", "0" * 40, "AGENTS.md") is None
 
 
+def test_raw_file_raises_on_persistent_server_error():
+    session = FakeSession([FakeResponse(500, text="boom") for _ in range(MAX_ATTEMPTS)])
+
+    with pytest.raises(GitHubUnavailable):
+        GitHub(session=session, sleep=lambda _: None).raw_file(
+            "a/b", "0" * 40, "AGENTS.md"
+        )
+
+
+def test_repo_raises_when_head_commit_fails():
+    session = FakeSession(
+        [FakeResponse(200, load("repo_payload.json")), FakeResponse(422, text="no such ref")]
+    )
+
+    with pytest.raises(GitHubUnavailable):
+        GitHub(session=session).repo("payloadcms/payload")
+
+
 def test_server_error_is_retried_then_succeeds():
     session = FakeSession(
         [
@@ -117,3 +135,44 @@ def test_exhausted_rate_limit_waits_for_the_reset(monkeypatch):
     GitHub(session=session, sleep=waited.append).repo("payloadcms/payload")
 
     assert waited and 55 <= waited[0] <= 70
+
+
+def test_exhausted_rate_limit_never_sleeps_on_the_final_attempt():
+    waited = []
+    session = FakeSession(
+        [
+            FakeResponse(
+                403,
+                {"message": "rate limit"},
+                headers={"x-ratelimit-remaining": "0", "x-ratelimit-reset": "1000"},
+            )
+            for _ in range(MAX_ATTEMPTS)
+        ]
+    )
+
+    with pytest.raises(GitHubUnavailable):
+        GitHub(session=session, sleep=waited.append).raw_file(
+            "a/b", "0" * 40, "AGENTS.md"
+        )
+
+    assert len(waited) == MAX_ATTEMPTS - 1
+
+
+def test_secondary_rate_limit_retries_after_retry_after_header():
+    waited = []
+    session = FakeSession(
+        [
+            FakeResponse(
+                403,
+                {"message": "secondary rate limit"},
+                headers={"x-ratelimit-remaining": "50", "Retry-After": "3"},
+            ),
+            FakeResponse(200, load("repo_payload.json")),
+            HEAD,
+        ]
+    )
+
+    meta = GitHub(session=session, sleep=waited.append).repo("payloadcms/payload")
+
+    assert meta.full_name == "payloadcms/payload"
+    assert waited == [3.0]

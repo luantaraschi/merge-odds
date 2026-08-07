@@ -21,6 +21,10 @@ class RepoNotFound(Exception):
     pass
 
 
+class GitHubUnavailable(Exception):
+    """A request failed for a reason that is not a clean 404."""
+
+
 @dataclass(frozen=True)
 class RepoMeta:
     full_name: str
@@ -54,9 +58,15 @@ class GitHub:
             if response.status_code in (403, 429):
                 remaining = response.headers.get("x-ratelimit-remaining")
                 reset = response.headers.get("x-ratelimit-reset")
+                retry_after = response.headers.get("Retry-After")
                 if remaining == "0" and reset:
-                    wait = min(float(reset) - time.time() + 5, RATE_LIMIT_CEILING_SECONDS)
-                    self._sleep(max(wait, 0))
+                    if attempt < MAX_ATTEMPTS - 1:
+                        wait = min(float(reset) - time.time() + 5, RATE_LIMIT_CEILING_SECONDS)
+                        self._sleep(max(wait, 0))
+                    continue
+                if retry_after:
+                    if attempt < MAX_ATTEMPTS - 1:
+                        self._sleep(min(float(retry_after), RATE_LIMIT_CEILING_SECONDS))
                     continue
 
             if response.status_code >= 500 and attempt < MAX_ATTEMPTS - 1:
@@ -77,11 +87,15 @@ class GitHub:
         head = self._get(
             f"{API}/repos/{full_name}/commits/{response_body['default_branch']}"
         )
+        if head.status_code != 200:
+            raise GitHubUnavailable(
+                f"could not fetch head commit for {full_name}: status {head.status_code}"
+            )
         return RepoMeta(
             full_name=full_name,
             archived=bool(response_body.get("archived")),
             default_branch=response_body["default_branch"],
-            head_sha=head.json()["sha"] if head.status_code == 200 else "",
+            head_sha=head.json()["sha"],
         )
 
     def closed_pulls(self, name: str, limit: int = 100) -> list[PullRequest]:
@@ -113,6 +127,10 @@ class GitHub:
 
     def raw_file(self, name: str, sha: str, path: str) -> str | None:
         response = self._get(f"{RAW}/{name}/{sha}/{path}")
-        if response.status_code != 200:
+        if response.status_code == 200:
+            return response.text.replace("\r\n", "\n")
+        if response.status_code == 404:
             return None
-        return response.text.replace("\r\n", "\n")
+        raise GitHubUnavailable(
+            f"could not fetch {path} for {name}@{sha}: status {response.status_code}"
+        )
