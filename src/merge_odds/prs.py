@@ -14,6 +14,9 @@ CASUAL_MAX_APPEARANCES = 2
 MIN_HUMAN_SAMPLE = 20
 """Below this many human pull requests, percentages are noise."""
 
+MIN_CASUAL_SAMPLE = 20
+"""Below this many casual pull requests, the acceptance denominator is noise."""
+
 BOT_LOGINS = frozenset(
     {
         "allcontributors",
@@ -79,19 +82,21 @@ def merge_stats(sample: list[PullRequest]) -> dict:
         closed = [pull.closed_at for pull in humans]
         stats["window_days"] = round((max(closed) - min(closed)).total_seconds() / 86400, 4)
 
-    if len(humans) < MIN_HUMAN_SAMPLE:
-        return {"merge_stats": stats, "insufficient_sample": True}
-
     appearances = Counter(pull.author for pull in humans)
     casual = [
         pull for pull in humans if appearances[pull.author] <= CASUAL_MAX_APPEARANCES
     ]
+    stats["casual_sample_size"] = len(casual)
+
+    if len(humans) < MIN_HUMAN_SAMPLE or len(casual) < MIN_CASUAL_SAMPLE:
+        return {"merge_stats": stats, "insufficient_sample": True}
+
     merged = [pull for pull in casual if pull.merged_at is not None]
 
     stats["casual_author_acceptance"] = (
         round(len(merged) / len(casual), 4) if casual else 0.0
     )
-    stats["distinct_casual_authors"] = len({pull.author for pull in merged})
+    stats["distinct_merged_casual_authors"] = len({pull.author for pull in merged})
 
     latencies = [_days(pull) for pull in merged]
     stats["median_days_to_merge"] = round(median(latencies), 4) if latencies else 0.0

@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 
-from merge_odds.prs import MIN_HUMAN_SAMPLE, PullRequest, is_bot, merge_stats
+from merge_odds.prs import MIN_CASUAL_SAMPLE, MIN_HUMAN_SAMPLE, PullRequest, is_bot, merge_stats
 
 BASE = datetime(2026, 6, 1, tzinfo=timezone.utc)
 
@@ -53,7 +53,29 @@ def test_high_traffic_insider_does_not_inflate_acceptance():
     result = merge_stats(insider + casual)
 
     assert result["merge_stats"]["casual_author_acceptance"] == 0.05
-    assert result["merge_stats"]["distinct_casual_authors"] == 1
+    assert result["merge_stats"]["casual_sample_size"] == 20
+    assert result["merge_stats"]["distinct_merged_casual_authors"] == 1
+
+
+def test_a_thin_casual_denominator_is_insufficient_even_with_a_healthy_human_sample():
+    """twenty's shape: plenty of human traffic, but almost all of it from
+    regulars, so only a handful of pull requests are actually casual."""
+    regulars = [
+        pr(f"regular{i}", opened_day=0, closed_day=1, merged=True) for i in range(3)
+        for _ in range(4)
+    ]
+    casual = [
+        pr(f"outsider{i}", opened_day=0, closed_day=1, merged=(i < 2))
+        for i in range(MIN_CASUAL_SAMPLE - 1)
+    ]
+
+    result = merge_stats(regulars + casual)
+
+    assert len(regulars) + len(casual) >= MIN_HUMAN_SAMPLE
+    assert result["insufficient_sample"] is True
+    assert result["merge_stats"]["casual_sample_size"] == MIN_CASUAL_SAMPLE - 1
+    assert "casual_author_acceptance" not in result["merge_stats"]
+    assert "distinct_merged_casual_authors" not in result["merge_stats"]
 
 
 def test_window_days_spans_the_whole_sample():
@@ -77,6 +99,7 @@ def test_small_sample_reports_insufficient_and_omits_percentages():
         "sample_size": 5,
         "window_days": 4.0,
         "bots_excluded": True,
+        "casual_sample_size": 5,
     }
 
 

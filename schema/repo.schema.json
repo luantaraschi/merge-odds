@@ -62,12 +62,13 @@
     "merge_stats": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["sample_size", "window_days", "bots_excluded"],
+      "required": ["sample_size", "window_days", "casual_sample_size", "bots_excluded"],
       "properties": {
         "sample_size": { "type": "integer", "minimum": 0 },
         "window_days": { "type": "number", "minimum": 0 },
+        "casual_sample_size": { "type": "integer", "minimum": 0 },
         "casual_author_acceptance": { "type": "number", "minimum": 0, "maximum": 1 },
-        "distinct_casual_authors": { "type": "integer", "minimum": 0 },
+        "distinct_merged_casual_authors": { "type": "integer", "minimum": 0 },
         "median_days_to_merge": { "type": "number", "minimum": 0 },
         "p90_days_to_merge": { "type": "number", "minimum": 0 },
         "bots_excluded": { "const": true }
@@ -103,7 +104,7 @@
           "merge_stats": {
             "required": [
               "casual_author_acceptance",
-              "distinct_casual_authors",
+              "distinct_merged_casual_authors",
               "median_days_to_merge",
               "p90_days_to_merge"
             ]

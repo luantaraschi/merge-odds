@@ -47,7 +47,12 @@ def test_insufficient_sample_forbids_percentages():
     entry["insufficient_sample"] = True
     assert errors(entry)
 
-    entry["merge_stats"] = {"sample_size": 8, "window_days": 12.0, "bots_excluded": True}
+    entry["merge_stats"] = {
+        "sample_size": 8,
+        "window_days": 12.0,
+        "casual_sample_size": 8,
+        "bots_excluded": True,
+    }
     assert errors(entry) == []
 
 

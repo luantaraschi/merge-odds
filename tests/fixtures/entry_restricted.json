@@ -17,5 +17,10 @@
     ]
   },
   "insufficient_sample": true,
-  "merge_stats": { "sample_size": 6, "window_days": 400.0, "bots_excluded": true }
+  "merge_stats": {
+    "sample_size": 6,
+    "window_days": 400.0,
+    "casual_sample_size": 4,
+    "bots_excluded": true
+  }
 }
