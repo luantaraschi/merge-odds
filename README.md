@@ -11,6 +11,14 @@ Column order is deliberate. The first four columns after the project name are po
 <!-- merge-odds:table:start -->
 | Project | External PRs | Issue first | AI code | AI PR text | Casual acceptance | Median | p90 | Measured |
 |---|---|---|---|---|---|---|---|---|
+| [directus/directus](https://github.com/directus/directus) | yes | — | conditional | disallowed | 0.3261 | 4.0867 d | 49.6518 d | 2026-08-07 |
+| [n8n-io/n8n](https://github.com/n8n-io/n8n) | yes | yes | conditional | disallowed | 0.4516 | 0.7824 d | 2.2607 d | 2026-08-07 |
+| [payloadcms/payload](https://github.com/payloadcms/payload) | yes | — | allowed | — | 0.3333 | 0.1154 d | 1.5779 d | 2026-08-07 |
+| [prisma/prisma](https://github.com/prisma/prisma) | yes | yes | allowed | — | 0.3846 | 5.9917 d | 46.494 d | 2026-08-07 |
+| [strapi/strapi](https://github.com/strapi/strapi) | yes | — | allowed | — | 0.4146 | 5.9918 d | 67.6427 d | 2026-08-07 |
+| [supabase/supabase](https://github.com/supabase/supabase) | yes | — | — | — | 0.9 | 0.9199 d | 10.7321 d | 2026-08-07 |
+| [twentyhq/twenty](https://github.com/twentyhq/twenty) | yes | — | — | — | 0.2 | 0.9237 d | 1.0906 d | 2026-08-07 |
+| [withastro/astro](https://github.com/withastro/astro) | yes | — | — | — | 0.5641 | 3.2643 d | 15.0786 d | 2026-08-07 |
 <!-- merge-odds:table:end -->
 
 ## Limitations

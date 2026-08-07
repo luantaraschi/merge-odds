@@ -1,0 +1,21 @@
+{
+  "repo": "supabase/supabase",
+  "measured_at": "2026-08-07",
+  "default_branch_sha": "6c0439ace812f134859a825e421f5f241cbf01b3",
+  "policy": {
+    "accepts_external_prs": true,
+    "requires_issue_first": false,
+    "ai_assisted_code": "not_stated",
+    "ai_authored_pr_text": "not_stated",
+    "evidence": []
+  },
+  "merge_stats": {
+    "sample_size": 97,
+    "window_days": 3.5642,
+    "bots_excluded": true,
+    "casual_author_acceptance": 0.9,
+    "distinct_casual_authors": 21,
+    "median_days_to_merge": 0.9199,
+    "p90_days_to_merge": 10.7321
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "repo": "twentyhq/twenty",
+  "measured_at": "2026-08-07",
+  "default_branch_sha": "10ee130eb951d397c7f0c428749ba8c05a0777e5",
+  "policy": {
+    "accepts_external_prs": true,
+    "requires_issue_first": false,
+    "ai_assisted_code": "not_stated",
+    "ai_authored_pr_text": "not_stated",
+    "evidence": []
+  },
+  "merge_stats": {
+    "sample_size": 85,
+    "window_days": 3.778,
+    "bots_excluded": true,
+    "casual_author_acceptance": 0.2,
+    "distinct_casual_authors": 2,
+    "median_days_to_merge": 0.9237,
+    "p90_days_to_merge": 1.0906
+  }
+}
