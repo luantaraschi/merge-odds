@@ -23,6 +23,151 @@ Where a policy cell links to text, the link goes to a quote it was read from, pi
 | [withastro/astro](https://github.com/withastro/astro) | yes | — | — | — | 0.56 | 3.26 d | 15.08 d | 9.96 d | 2026-08-07 |
 <!-- merge-odds:table:end -->
 
+## How an entry is built
+
+```
+scripts/measure.py <owner/repo>
+        |
+   github.py ........ the only module that touches the network
+        |              repo metadata, default branch sha,
+        |              100 most recently updated closed PRs,
+        |              raw contents of each candidate policy file
+        |
+        +--> policy.py ...... regex sweep over the files, returns
+        |                     candidate quotes and decides nothing
+        +--> prs.py ......... pure statistics over the sample
+        |
+   entry.py ......... assembles JSON, pins every quote to the sha
+        |
+   data/repos/<owner>__<repo>.json
+        |
+   scripts/render.py  regenerates the table above, in place
+```
+
+The table in this README is generated. `render.py` splices it between the two
+HTML comment markers, and CI fails if a committed README disagrees with the
+data it claims to display, so the table cannot silently drift from
+`data/repos/`.
+
+## Engineering Highlights
+
+### The regex proposes; a person decides
+
+Reading a project's contributing policy is a judgement call. "We welcome
+contributions" three paragraphs above "we are not accepting new features"
+means the second one. Automating that judgement produces a dataset that is
+confidently wrong.
+
+So the split is enforced in the code. `policy.py` opens with the line
+`"Finds candidate policy statements. Decides nothing."` and it means it: it
+sweeps a fixed list of candidate files, `ai_policy.md`, `AGENTS.md`,
+`CLAUDE.md`, `CONTRIBUTING.md`, pull request templates, `README.md`, against
+per claim regex patterns, and returns the passages it found with their line
+ranges. What each passage *means* is decided by the person adding the entry,
+and the quote they pick is stored word for word.
+
+Quotes are capped at 600 characters and 8 lines. A quote long enough to need
+summarizing is not evidence any more.
+
+### Evidence pinned to a commit, and re-verified rather than trusted
+
+Every quote is stored with the repository's `default_branch_sha` at the moment
+it was read, and `entry.py` builds a permalink to `blob/<sha>/<path>#L21-L22`.
+A reader can click a claim and land on the exact lines it came from, as they
+were, even if the file has since been rewritten.
+
+`validate_data.py` then re-fetches each quoted range at its pinned sha and
+checks the text is still there verbatim. This runs in CI on every changed
+entry, so a typo in a quote or a hand edited line range fails the pull request
+rather than becoming part of the dataset.
+
+### Numbers refuse to appear when the sample is too thin
+
+The temptation with a scraped statistic is to publish whatever the arithmetic
+produced. `prs.py` sets explicit floors instead: `MIN_HUMAN_SAMPLE = 20` and
+`MIN_CASUAL_SAMPLE = 20`, below which a percentage is documented as noise and
+withheld. That is why several rows in the table above have a policy but no
+acceptance rate: the sample did not support one, and the honest output is a
+blank cell.
+
+Defining an outsider is the other half of it. `CASUAL_MAX_APPEARANCES = 2`
+means an author appearing more than twice in the sample of 100 is a regular,
+not someone passing through, and their merges are excluded from a statistic
+meant to describe outsiders. Bots are excluded by a frozen login list plus
+GitHub's own bot flag, so `dependabot` does not inflate anyone's acceptance
+rate.
+
+`prs.py` is documented as "pure functions, no network", which is what lets all
+of this be tested against fixtures rather than against GitHub.
+
+### One module owns the network, and it retries
+
+Every HTTP call is confined to `github.py`. It retries up to 4 attempts, waits
+out secondary rate limits with a 900 second ceiling so a job cannot hang
+indefinitely, and distinguishes a clean 404 (`RepoNotFound`, meaning the
+repository is gone) from any other failure (`GitHubUnavailable`, meaning try
+later). That distinction matters at refresh time: a project that disappeared
+should be marked, a project behind a flaky API should not be.
+
+### A weekly refresh that will not touch a quote
+
+`refresh.py` opens with `"Re-measure every entry weekly. Never rewrites a
+quote."` The scheduled workflow recomputes the statistics and re-checks that
+the already quoted lines are still present. It does not re-read a project's
+files hunting for a rule that appeared since the entry was written.
+
+This is a deliberate limit, and it is stated in the table's own Limitations
+section rather than buried here: a `Measured` date advancing every week proves
+the numbers were recomputed, not that the policy was re-read.
+
+The workflow pins every action to a full commit sha rather than a tag, and
+declares least privilege `permissions:` per job. `validate.yml` gets
+`contents: read` and nothing else.
+
+## Tech Stack
+
+| Layer | Choice | Role in this project |
+|---|---|---|
+| Language | Python 3.11+ | Two runtime dependencies total |
+| HTTP | requests | The GitHub REST and raw content APIs |
+| Validation | jsonschema, Draft 2020-12 | Entry shape enforced in CI |
+| Tests | pytest | 109 cases against recorded fixtures |
+| CI | GitHub Actions | Validate on PR, refresh weekly |
+| Data | One JSON file per project | Diffable, reviewable, no database |
+
+## Testing & Reliability
+
+`python -m pytest -q` runs 109 tests, all passing, across 10 files covering
+every module: policy pattern matching, the statistics and their sample floors,
+the GitHub client's retry and error branches, entry serialization, the
+renderer, the schema itself and the validator.
+
+None of them touch the network. `tests/fixtures/` holds recorded API payloads
+and sample entries, so the suite is deterministic and runs in well under a
+second.
+
+Beyond unit tests, `validate.yml` enforces three things on every pull request:
+the entries changed in that PR pass schema and live quote verification, the
+README table matches the data (`render.py --check`), and the whole suite
+passes. When it cannot determine a diff base, it falls back to validating
+every entry rather than none, which is the safe direction.
+
+## Running Locally
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pytest -q
+```
+
+Reading the dataset needs nothing installed. Measuring or validating needs the
+package plus a `GITHUB_TOKEN` in the environment for a usable API rate limit:
+
+```bash
+python scripts/measure.py owner/repo    # writes data/repos/owner__repo.json
+python scripts/validate_data.py         # schema, pairing, verbatim quotes
+python scripts/render.py                # regenerate the table in this README
+```
+
 ## Limitations
 
 Each entry's statistics come from a sample of 100 closed pull requests, not the project's full history. Policy is read at a specific date against a specific commit; a project can change its rules the day after an entry is measured. The weekly refresh recomputes the statistics and re-checks that each already-quoted line of policy text is still there -- it does not re-read a project's files looking for a rule that is new since the entry was written, so a `Measured` date advancing every week is not proof the policy was re-read, only that the statistics were. No number in this table predicts what will happen to any single pull request. A high acceptance rate describes a hundred people who are not you.
@@ -49,4 +194,11 @@ the skill.
 
 ## Contributing
 
-To add or correct an entry, see `CONTRIBUTING.md`.
+To add or correct an entry, see [`CONTRIBUTING.md`](CONTRIBUTING.md). The
+method behind the measurements is written up in
+[`METHODOLOGY.md`](METHODOLOGY.md).
+
+## License
+
+Code under MIT, see [`LICENSE`](LICENSE). The dataset in `data/` carries its
+own licence in [`data/LICENSE`](data/LICENSE).
