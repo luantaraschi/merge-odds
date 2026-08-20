@@ -1,6 +1,6 @@
 [project]
 name = "merge-odds"
-version = "0.1.0"
+version = "0.2.0"
 description = "Does this project accept outside contributions, and under what rules?"
 requires-python = ">=3.11"
 dependencies = ["requests>=2.31", "jsonschema>=4.21"]

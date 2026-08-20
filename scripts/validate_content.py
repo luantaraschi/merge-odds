@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reject punctuation patterns prohibited in public site copy and READMEs."""
+"""Reject punctuation patterns prohibited in public copy: README, site, and skills."""
 
 from __future__ import annotations
 
@@ -21,6 +21,11 @@ def public_files() -> list[Path]:
         path
         for path in (ROOT / "site").rglob("*")
         if path.is_file() and path.suffix in {".html", ".js", ".md", ".svg"}
+    )
+    # Skills ship inside the plugin and are read by whoever installs it,
+    # which makes them public copy under the same rules as the site.
+    files.extend(
+        path for path in (ROOT / "skills").rglob("*.md") if path.is_file()
     )
     return sorted(files)
 

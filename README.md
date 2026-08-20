@@ -7,13 +7,13 @@
 <p align="center">
   <a href="https://luantaraschi.github.io/merge-odds/">Website</a> ·
   <a href="https://github.com/luantaraschi/merge-odds/discussions">Discussions</a> ·
-  <a href="#install-vet-repo">Install</a> ·
+  <a href="#install-the-skills">Install</a> ·
   <a href="METHODOLOGY.md">Methodology</a> ·
   <a href="CONTRIBUTING.md">Contribute</a>
 </p>
 
 <p align="center">
-  <img alt="version 0.1.0" src="https://img.shields.io/badge/version-0.1.0-174c3c">
+  <img alt="version 0.2.0" src="https://img.shields.io/badge/version-0.2.0-174c3c">
   <img alt="8 measured projects" src="https://img.shields.io/badge/catalog-8_projects-d7ff59?labelColor=111713&color=d7ff59">
   <img alt="Python 3.11 or later" src="https://img.shields.io/badge/python-%3E%3D3.11-174c3c">
   <img alt="MIT license" src="https://img.shields.io/badge/license-MIT-174c3c">
@@ -146,7 +146,15 @@ Each entry uses a sample of 100 closed pull requests, not the full project histo
 
 Policy is read at one date and pinned to one commit. The weekly refresh checks that already quoted text is still present and recomputes statistics. It does not search for new policy language. No number in this dataset predicts what will happen to one pull request.
 
-## Install `vet-repo`
+## Install the skills
+
+The plugin carries two skills, for two decisions that arrive in order.
+`vet-repo` answers whether a project accepts outside work and under what
+rules, and it is the one that reads this dataset. `vet-issue` answers
+whether one particular piece of work in that project is still available,
+which is a different question: an issue can be open, unassigned and
+referenced by no pull request while the defect it describes has already
+been fixed.
 
 As a Claude Code plugin:
 
@@ -167,7 +175,7 @@ The dataset needs no runtime. Running the measurement and validation scripts nee
 pip install -e .
 ```
 
-The skill resolves `data/repos/` and `scripts/measure.py` from its own plugin root, not from the project being checked. Read [skills/vet-repo/SKILL.md](skills/vet-repo/SKILL.md) for the complete sequence.
+`vet-repo` resolves `data/repos/` and `scripts/measure.py` from its own plugin root, not from the project being checked. Read [skills/vet-repo/SKILL.md](skills/vet-repo/SKILL.md) for the complete sequence, and [skills/vet-issue/SKILL.md](skills/vet-issue/SKILL.md) for the checks that come after a project passes.
 
 ## Contributing
 
