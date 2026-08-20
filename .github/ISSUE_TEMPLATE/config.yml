@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question
+    url: https://github.com/luantaraschi/merge-odds/discussions/categories/q-a
+    about: Get help with measurement, evidence, schema fields, or an entry.
+  - name: Discuss an idea
+    url: https://github.com/luantaraschi/merge-odds/discussions/categories/ideas
+    about: Talk through a methodology, schema, or site change before writing code.

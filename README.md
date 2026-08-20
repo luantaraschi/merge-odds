@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="https://luantaraschi.github.io/merge-odds/">Website</a> ·
+  <a href="https://github.com/luantaraschi/merge-odds/discussions">Discussions</a> ·
   <a href="#install-vet-repo">Install</a> ·
   <a href="METHODOLOGY.md">Methodology</a> ·
   <a href="CONTRIBUTING.md">Contribute</a>
