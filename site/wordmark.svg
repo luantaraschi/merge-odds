@@ -1,15 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 190" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 25 562 140" role="img" aria-labelledby="title desc">
   <title id="title">Merge Odds</title>
   <desc id="desc">Two paths cross a policy gate beside the Merge Odds name.</desc>
   <style>
     .word { fill: #111713; }
     @media (prefers-color-scheme: dark) { .word { fill: #f1efe7; } }
   </style>
+  <defs>
+    <mask id="route-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <rect width="100" height="100" fill="#000"/>
+      <path d="M14 24h16c13 0 20 8 20 26s7 26 20 26h16" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="square"/>
+      <path d="M14 76h16c13 0 20-8 20-26" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="square"/>
+    </mask>
+  </defs>
   <g transform="translate(24 45)">
     <rect width="100" height="100" rx="12" fill="#111713"/>
     <path d="M14 24h16c13 0 20 8 20 26s7 26 20 26h16" fill="none" stroke="#f1efe7" stroke-width="8" stroke-linecap="square"/>
     <path d="M14 76h16c13 0 20-8 20-26" fill="none" stroke="#f1efe7" stroke-width="8" stroke-linecap="square"/>
-    <path d="M50 34v32" fill="none" stroke="#d7ff59" stroke-width="8"/>
+    <path d="M50 34v32" fill="none" stroke="#d7ff59" stroke-width="8" mask="url(#route-mask)"/>
   </g>
   <text class="word" x="154" y="121" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="79" font-weight="700" letter-spacing="-5">merge odds</text>
 </svg>

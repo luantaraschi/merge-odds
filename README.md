@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="site/wordmark.svg" width="620" alt="Merge Odds">
+  <img src="site/wordmark.svg" width="560" alt="Merge Odds">
 </p>
 
 <p align="center"><strong>Read the rules before you touch the repo.</strong></p>

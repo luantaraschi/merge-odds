@@ -1,8 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
   <title id="title">Merge Odds mark</title>
   <desc id="desc">Two paths cross a gate and leave as one.</desc>
+  <defs>
+    <mask id="route-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+      <rect width="64" height="64" fill="#000"/>
+      <path d="M10 15h10c8 0 12 5 12 17s4 17 12 17h10" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="square"/>
+      <path d="M10 49h10c8 0 12-5 12-17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="square"/>
+    </mask>
+  </defs>
   <rect width="64" height="64" rx="8" fill="#111713"/>
   <path d="M10 15h10c8 0 12 5 12 17s4 17 12 17h10" fill="none" stroke="#f1efe7" stroke-width="5" stroke-linecap="square"/>
   <path d="M10 49h10c8 0 12-5 12-17" fill="none" stroke="#f1efe7" stroke-width="5" stroke-linecap="square"/>
-  <path d="M32 22v20" fill="none" stroke="#d7ff59" stroke-width="5"/>
+  <path d="M32 22v20" fill="none" stroke="#d7ff59" stroke-width="5" mask="url(#route-mask)"/>
 </svg>
