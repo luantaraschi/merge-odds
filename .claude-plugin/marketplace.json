@@ -8,7 +8,7 @@
     {
       "name": "merge-odds",
       "source": "./",
-      "description": "Check whether a project accepts outside contributions, and under what rules, before doing any work.",
+      "description": "Check whether a project accepts outside contributions, under what rules, and whether the work is still available, before doing any of it.",
       "author": {
         "name": "Luan Taraschi",
         "email": "130802253+luantaraschi@users.noreply.github.com"

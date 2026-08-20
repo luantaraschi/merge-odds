@@ -1,7 +1,7 @@
 {
   "name": "merge-odds",
-  "version": "0.1.0",
-  "description": "Check whether a project accepts outside contributions, and under what rules, before doing any work.",
+  "version": "0.2.0",
+  "description": "Check whether a project accepts outside contributions, under what rules, and whether the work is still available, before doing any of it.",
   "author": { "name": "Luan Taraschi", "email": "130802253+luantaraschi@users.noreply.github.com" },
   "homepage": "https://luantaraschi.github.io/merge-odds/",
   "repository": "https://github.com/luantaraschi/merge-odds",

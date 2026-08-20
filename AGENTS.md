@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This file is for an agent reading this repository, not for an agent deciding whether to work on some other project. For that, see the `vet-repo` skill under `skills/`.
+This file is for an agent reading this repository, not for an agent deciding whether to work on some other project. For that, see the skills under `skills/`: `vet-repo` for whether a project accepts outside work, and `vet-issue` for whether one piece of work in it is still available.
 
 ## Where the data lives
 
