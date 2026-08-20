@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Merge Odds | Read the rules before you touch the repo</title>
+  <meta name="description" content="Check whether an open source project accepts outside pull requests and read its contribution rules before work begins.">
+  <meta name="theme-color" content="#f1efe7">
+  <meta property="og:title" content="Merge Odds">
+  <meta property="og:description" content="Read the rules before you touch the repo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://luantaraschi.github.io/merge-odds/">
+  <meta property="og:image" content="https://luantaraschi.github.io/merge-odds/og.png">
+  <link rel="icon" href="mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,500;6..72,650&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Merge Odds home">
+      <img src="mark.svg" alt="" width="34" height="34">
+      <span translate="no">merge odds</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#reader">Check a project</a>
+      <a href="#method">Method</a>
+      <a href="#dataset">Dataset</a>
+    </nav>
+    <a class="header-action" href="https://github.com/luantaraschi/merge-odds">View on GitHub</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">CONTRIBUTION POLICY, BEFORE CODE</p>
+        <h1>Read the rules before you touch the repo.</h1>
+        <p class="hero-lede">Merge Odds checks whether a project wants outside pull requests, whether it expects an issue first, and what it says about AI assisted work.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#reader">Check a project</a>
+          <a class="text-link" href="#install">Install <span aria-hidden="true">↘</span></a>
+        </div>
+        <p class="scope-note"><span>8</span> measured projects. Every nondefault claim points to a source pinned at a commit.</p>
+      </div>
+
+      <div class="case-file" aria-label="Example policy case file">
+        <div class="case-file-head">
+          <span>POLICY FILE 001</span>
+          <span>READ FIRST</span>
+        </div>
+        <div class="case-route" aria-hidden="true">
+          <svg viewBox="0 0 520 100" focusable="false">
+            <path d="M8 22h112c88 0 100 56 190 56h202"/>
+            <path d="M8 78h112c88 0 100-56 190-56"/>
+            <path class="gate-line" d="M310 9v82"/>
+          </svg>
+          <span class="route-label route-policy">POLICY</span>
+          <span class="route-label route-history">HISTORY</span>
+          <span class="route-label route-work">WORK</span>
+        </div>
+        <blockquote>
+          “We require a human in the loop at all times.”
+        </blockquote>
+        <div class="case-source">
+          <span>directus/directus</span>
+          <a href="https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L19">ai_policy.md at 197d141</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="reader-section" id="reader" aria-labelledby="reader-title">
+      <div class="section-heading">
+        <p class="eyebrow">THE READER</p>
+        <h2 id="reader-title">Policy first. Statistics second.</h2>
+        <p>Select a measured project. A linked source means the project stated a rule that differs from the dataset default.</p>
+      </div>
+
+      <div class="reader-shell">
+        <div class="reader-toolbar">
+          <label for="repo-select">Project</label>
+          <select id="repo-select" name="repo">
+            <option value="directus/directus">directus/directus</option>
+<option value="n8n-io/n8n">n8n-io/n8n</option>
+<option value="payloadcms/payload">payloadcms/payload</option>
+<option value="prisma/prisma">prisma/prisma</option>
+<option value="strapi/strapi">strapi/strapi</option>
+<option value="supabase/supabase">supabase/supabase</option>
+<option value="twentyhq/twenty">twentyhq/twenty</option>
+<option value="withastro/astro">withastro/astro</option>
+          </select>
+          <p id="reader-status" class="reader-status" aria-live="polite">Showing directus/directus</p>
+        </div>
+
+        <article class="policy-reader" id="policy-reader" data-repo="directus/directus">
+          <header class="policy-reader-head">
+            <div>
+              <p class="record-label">CURRENT RECORD</p>
+              <h3 id="record-repo">directus/directus</h3>
+            </div>
+            <div class="record-date">
+              <span>MEASURED</span>
+              <time id="record-date" datetime="2026-08-07">2026.08.07</time>
+            </div>
+          </header>
+
+          <div class="policy-grid" id="policy-grid">
+            <div class="policy-item is-open">
+              <span class="policy-index">01</span>
+              <div><span class="policy-question">External pull requests</span><strong>Accepted</strong><small>No restriction found in files read</small></div>
+            </div>
+            <div class="policy-item is-neutral">
+              <span class="policy-index">02</span>
+              <div><span class="policy-question">Issue first</span><strong>Not required</strong><small>No requirement found in files read</small></div>
+            </div>
+            <div class="policy-item is-caution">
+              <span class="policy-index">03</span>
+              <div><span class="policy-question">AI assisted code</span><strong>Conditional</strong><a href="https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L21-L22">Read ai_policy.md</a></div>
+            </div>
+            <div class="policy-item is-stop">
+              <span class="policy-index">04</span>
+              <div><span class="policy-question">AI written PR text</span><strong>Disallowed</strong><a href="https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L29-L30">Read ai_policy.md</a></div>
+            </div>
+          </div>
+
+          <div class="stats-strip" id="stats-strip" aria-label="Historical sample">
+            <div><span>CASUAL ACCEPTANCE</span><strong>33%</strong></div>
+            <div><span>MEDIAN TO MERGE</span><strong>4.09 days</strong></div>
+            <div><span>P90 TO MERGE</span><strong>49.65 days</strong></div>
+            <div><span>SAMPLE RECENCY</span><strong>51.45 days</strong></div>
+          </div>
+          <p class="stats-warning">This sample describes past pull requests from other people. It does not predict yours.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="method-section" id="method" aria-labelledby="method-title">
+      <div class="method-intro">
+        <p class="eyebrow">READ IN THIS ORDER</p>
+        <h2 id="method-title">A percentage cannot overrule a maintainer.</h2>
+        <p>The dataset leads with the project's own policy. Historical activity comes after it, with enough context to show where the sample can mislead.</p>
+        <a class="text-link" href="https://github.com/luantaraschi/merge-odds/blob/main/METHODOLOGY.md">Read the methodology <span aria-hidden="true">↗</span></a>
+      </div>
+      <ol class="method-list">
+        <li><span>01</span><div><h3>Open the pull request template</h3><p>Restrictions can sit inside comments that disappear when GitHub renders the form.</p></div></li>
+        <li><span>02</span><div><h3>Check the pinned record</h3><p>Every quoted rule names the source file and commit where it was read.</p></div></li>
+        <li><span>03</span><div><h3>Read current policy files</h3><p>The dataset is a starting point. A project can change its rules after measurement.</p></div></li>
+        <li><span>04</span><div><h3>Use statistics as context</h3><p>Casual author activity says what happened in a sample. It grants no permission.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="dataset-section" id="dataset" aria-labelledby="dataset-title">
+      <div class="section-heading dataset-heading">
+        <div>
+          <p class="eyebrow">THE DATASET</p>
+          <h2 id="dataset-title">Eight projects, one readable record each.</h2>
+        </div>
+        <div class="search-field">
+          <label for="dataset-search">Filter projects</label>
+          <input id="dataset-search" name="project-filter" type="search" placeholder="Try withastro/astro…" autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+      <p id="filter-status" class="filter-status" aria-live="polite">8 projects shown</p>
+      <div class="table-wrap" tabindex="0" aria-label="Measured repositories, horizontally scrollable on small screens">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Project</th>
+              <th scope="col">External PRs</th>
+              <th scope="col">Issue first</th>
+              <th scope="col">AI code</th>
+              <th scope="col">AI PR text</th>
+              <th scope="col">Casual acceptance</th>
+              <th scope="col">Median to merge</th>
+              <th scope="col">Sources</th>
+              <th scope="col">Measured</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-repo="directus/directus"><td data-label="Project"><a href="https://github.com/directus/directus">directus/directus</a></td><td data-label="External PRs">yes</td><td data-label="Issue first">not required</td><td data-label="AI code">conditional</td><td data-label="AI PR text">disallowed</td><td data-label="Casual acceptance">33%</td><td data-label="Median to merge">4.09 days</td><td data-label="Sources">2</td><td data-label="Measured">2026-08-07</td></tr>
+<tr data-repo="n8n-io/n8n"><td data-label="Project"><a href="https://github.com/n8n-io/n8n">n8n-io/n8n</a></td><td data-label="External PRs">yes</td><td data-label="Issue first">yes</td><td data-label="AI code">conditional</td><td data-label="AI PR text">disallowed</td><td data-label="Casual acceptance">47%</td><td data-label="Median to merge">0.57 days</td><td data-label="Sources">3</td><td data-label="Measured">2026-08-07</td></tr>
+<tr data-repo="payloadcms/payload"><td data-label="Project"><a href="https://github.com/payloadcms/payload">payloadcms/payload</a></td><td data-label="External PRs">yes</td><td data-label="Issue first">not required</td><td data-label="AI code">not stated</td><td data-label="AI PR text">not stated</td><td data-label="Casual acceptance">not available</td><td data-label="Median to merge">not available</td><td data-label="Sources">0</td><td data-label="Measured">2026-08-07</td></tr>
+<tr data-repo="prisma/prisma"><td data-label="Project"><a href="https://github.com/prisma/prisma">prisma/prisma</a></td><td data-label="External PRs">yes</td><td data-label="Issue first">yes</td><td data-label="AI code">allowed</td><td data-label="AI PR text">not stated</td><td data-label="Casual acceptance">not available</td><td data-label="Median to merge">not available</td><td data-label="Sources">2</td><td data-label="Measured">2026-08-07</td></tr>
+<tr data-repo="strapi/strapi"><td data-label="Project"><a href="https://github.com/strapi/strapi">strapi/strapi</a></td><td data-label="External PRs">yes</td><td data-label="Issue first">not required</td><td data-label="AI code">not stated</td><td data-label="AI PR text">not stated</td><td data-label="Casual acceptance">41%</td><td data-label="Median to merge">5.99 days</td><td data-label="Sources">0</td><td data-label="Measured">2026-08-07</td></tr>
+<tr data-repo="supabase/supabase"><td data-label="Project"><a href="https://github.com/supabase/supabase">supabase/supabase</a></td><td data-label="External PRs">yes</td><td data-label="Issue first">yes</td><td data-label="AI code">not stated</td><td data-label="AI PR text">not stated</td><td data-label="Casual acceptance">90%</td><td data-label="Median to merge">0.92 days</td><td data-label="Sources">1</td><td data-label="Measured">2026-08-07</td></tr>
+<tr data-repo="twentyhq/twenty"><td data-label="Project"><a href="https://github.com/twentyhq/twenty">twentyhq/twenty</a></td><td data-label="External PRs">yes</td><td data-label="Issue first">not required</td><td data-label="AI code">not stated</td><td data-label="AI PR text">not stated</td><td data-label="Casual acceptance">not available</td><td data-label="Median to merge">not available</td><td data-label="Sources">0</td><td data-label="Measured">2026-08-07</td></tr>
+<tr data-repo="withastro/astro"><td data-label="Project"><a href="https://github.com/withastro/astro">withastro/astro</a></td><td data-label="External PRs">yes</td><td data-label="Issue first">not required</td><td data-label="AI code">not stated</td><td data-label="AI PR text">not stated</td><td data-label="Casual acceptance">56%</td><td data-label="Median to merge">3.26 days</td><td data-label="Sources">0</td><td data-label="Measured">2026-08-07</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <noscript><p class="noscript-note">The complete table is visible above. Enable JavaScript only if you want filtering and the interactive reader.</p></noscript>
+    </section>
+
+    <section class="install-section" id="install" aria-labelledby="install-title">
+      <div class="install-copy">
+        <p class="eyebrow">VET BEFORE WORK</p>
+        <h2 id="install-title">Put the policy check in the workflow.</h2>
+        <p>The <code>vet-repo</code> skill checks the pull request template first, reads current policy files, and reports statistics last.</p>
+      </div>
+      <div class="command-stack">
+        <div class="command-block">
+          <div class="command-label"><span>CLAUDE CODE PLUGIN</span><button type="button" data-copy="/plugin marketplace add luantaraschi/merge-odds&#10;/plugin install merge-odds">Copy</button></div>
+          <pre><code>/plugin marketplace add luantaraschi/merge-odds
+/plugin install merge-odds</code></pre>
+        </div>
+        <div class="command-block">
+          <div class="command-label"><span>CLONE THE DATASET</span><button type="button" data-copy="git clone https://github.com/luantaraschi/merge-odds.git">Copy</button></div>
+          <pre><code>git clone https://github.com/luantaraschi/merge-odds.git</code></pre>
+        </div>
+        <p id="copy-status" class="sr-only" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="limits-section" aria-labelledby="limits-title">
+      <p class="eyebrow">WHAT IT CANNOT TELL YOU</p>
+      <h2 id="limits-title">No score predicts whether your pull request will merge.</h2>
+      <p>Policy is measured at one commit. Statistics come from a limited sample. The weekly refresh verifies old quotes and recomputes activity, but it does not discover new policy language. Read the current repository before acting.</p>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#top"><img src="mark.svg" alt="" width="34" height="34"><span translate="no">merge odds</span></a>
+    <p>Policy before probability.</p>
+    <div>
+      <a href="https://github.com/luantaraschi/merge-odds">Repository</a>
+      <a href="https://github.com/luantaraschi/merge-odds/issues/new?template=add-repo.yml">Add a project</a>
+      <a href="https://github.com/luantaraschi/merge-odds/issues/new?template=dispute.yml">Dispute an entry</a>
+      <a href="generic/">Generic comparison</a>
+    </div>
+  </footer>
+</body>
+</html>

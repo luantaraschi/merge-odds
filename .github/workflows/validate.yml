@@ -58,3 +58,9 @@ jobs:
 
       - name: README table in sync
         run: python scripts/render.py --check
+
+      - name: Site output in sync
+        run: python scripts/build_site.py --check
+
+      - name: Public copy rules
+        run: python scripts/validate_content.py

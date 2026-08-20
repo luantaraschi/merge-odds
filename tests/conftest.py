@@ -31,3 +31,17 @@ _rspec = importlib.util.spec_from_file_location(
 refresh_module = importlib.util.module_from_spec(_rspec)
 sys.modules["refresh_module"] = refresh_module
 _rspec.loader.exec_module(refresh_module)
+
+_bspec = importlib.util.spec_from_file_location(
+    "build_site_module", ROOT / "scripts" / "build_site.py"
+)
+build_site_module = importlib.util.module_from_spec(_bspec)
+sys.modules["build_site_module"] = build_site_module
+_bspec.loader.exec_module(build_site_module)
+
+_cspec = importlib.util.spec_from_file_location(
+    "validate_content_module", ROOT / "scripts" / "validate_content.py"
+)
+validate_content_module = importlib.util.module_from_spec(_cspec)
+sys.modules["validate_content_module"] = validate_content_module
+_cspec.loader.exec_module(validate_content_module)

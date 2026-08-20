@@ -16,7 +16,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 START = "<!-- merge-odds:table:start -->"
 END = "<!-- merge-odds:table:end -->"
-DASH = "—"
+NOT_STATED = "not stated"
+NOT_AVAILABLE = "not available"
 
 COLUMNS = (
     "Project",
@@ -34,7 +35,7 @@ COLUMNS = (
 STANCE_LABEL = {
     "allowed": "allowed",
     "allowed_with_conditions": "conditional",
-    "not_stated": DASH,
+    "not_stated": NOT_STATED,
     "disallowed": "disallowed",
 }
 
@@ -44,7 +45,7 @@ def _number(stats: dict, key: str, suffix: str = "") -> str:
     # figures, but four decimal places on a median of a few dozen values
     # is false precision on the page.
     if key not in stats:
-        return DASH
+        return NOT_AVAILABLE
     return f"{round(stats[key], 2)}{suffix}"
 
 
@@ -77,7 +78,7 @@ def _row(entry: dict) -> str:
             _evidence_url(policy, "accepts_external_prs"),
         ),
         _cell(
-            "yes" if policy["requires_issue_first"] else DASH,
+            "yes" if policy["requires_issue_first"] else "not required",
             _evidence_url(policy, "requires_issue_first"),
         ),
         _cell(

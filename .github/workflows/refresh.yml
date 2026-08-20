@@ -38,6 +38,9 @@ jobs:
           python scripts/validate_data.py
           python scripts/render.py --check
 
+      - name: Rebuild the public dataset
+        run: python scripts/build_site.py
+
       - name: Open the update pull request
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
@@ -49,6 +52,8 @@ jobs:
           add-paths: |
             data/repos
             README.md
+            site/index.html
+            site/repos.json
 
       - name: Open a policy drift issue
         if: hashFiles('refresh-report.md') != ''

@@ -1,0 +1,42 @@
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #090911; color: white; font-family: Arial, Helvetica, sans-serif; line-height: 1.5; }
+a { color: inherit; text-decoration: none; }
+header { height: 72px; padding: 0 5vw; display: flex; align-items: center; gap: 36px; border-bottom: 1px solid rgba(255,255,255,.1); background: #0b0b15; }
+.logo { font-size: 20px; font-weight: 800; }
+nav { margin-left: auto; display: flex; gap: 32px; color: #b9b9ca; font-size: 14px; }
+.nav-cta, .primary, .cta a { padding: 11px 20px; border-radius: 999px; background: linear-gradient(135deg, #9333ea, #3b82f6); font-weight: 700; }
+.hero { min-height: 830px; padding: 90px 24px 0; text-align: center; background: radial-gradient(circle at 50% 15%, rgba(124,58,237,.35), transparent 36%), linear-gradient(180deg, #111126, #090911); overflow: hidden; }
+.badge, .section-badge { display: inline-block; padding: 7px 13px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(255,255,255,.08); color: #d6d6e8; font-size: 12px; }
+h1 { max-width: 900px; margin: 28px auto 22px; font-size: clamp(54px, 7vw, 92px); line-height: .98; letter-spacing: -.06em; }
+h1 span { background: linear-gradient(90deg, #c084fc, #60a5fa); background-clip: text; color: transparent; }
+.hero > p { max-width: 640px; margin: 0 auto; color: #a9a9bf; font-size: 19px; }
+.actions { margin: 34px 0 58px; display: flex; justify-content: center; gap: 12px; }
+.actions a { min-width: 152px; padding: 13px 20px; }
+.secondary { border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(255,255,255,.06); }
+.dashboard { width: min(940px, 94vw); min-height: 335px; margin: 0 auto; border: 1px solid rgba(255,255,255,.18); border-radius: 22px 22px 0 0; background: rgba(11,11,24,.78); box-shadow: 0 0 90px rgba(124,58,237,.24); text-align: left; overflow: hidden; }
+.dash-head { padding: 18px 24px; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.1); color: #bbb8d3; font-size: 13px; }
+.dash-body { padding: 46px 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.metric { min-height: 150px; padding: 24px; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(255,255,255,.04); }
+.metric > span { font-size: 30px; }
+.metric strong, .metric small { display: block; }
+.metric strong { margin-top: 18px; }
+.metric small { margin-top: 6px; color: #9795ad; }
+.features { padding: 110px 5vw; text-align: center; }
+.section-badge { color: #c9a7ff; }
+h2 { margin: 18px 0 12px; font-size: clamp(38px, 5vw, 58px); letter-spacing: -.04em; }
+.section-lede { color: #9b9aad; }
+.cards { max-width: 1120px; margin: 48px auto 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; text-align: left; }
+.cards article { padding: 26px; border: 1px solid rgba(255,255,255,.11); border-radius: 20px; background: #10101c; transition: transform .25s ease, border-color .25s ease; }
+.cards article:hover { transform: translateY(-7px); border-color: #8b5cf6; }
+.cards article > span { font-size: 34px; }
+.cards h3 { margin: 22px 0 8px; }
+.cards p { margin: 0; color: #9998aa; font-size: 14px; }
+.cta { margin: 0 5vw 90px; padding: 78px 24px; border-radius: 28px; background: linear-gradient(135deg, #7928ca, #2563eb); text-align: center; }
+.cta > span { font-size: 42px; }
+.cta p { color: #e5defb; }
+.cta a { display: inline-block; margin-top: 16px; background: white; color: #4c1d95; }
+footer { padding: 34px 5vw; display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.1); color: #aaa9bb; }
+@media (max-width: 800px) { nav { display: none; } .hero { min-height: 740px; } .dash-body, .cards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { header { padding: 0 16px; } .nav-cta { margin-left: auto; } .hero { padding: 70px 16px 0; } h1 { font-size: 50px; } .actions { flex-direction: column; } .dash-body, .cards { grid-template-columns: 1fr; } .dashboard { min-height: 520px; } .features { padding: 82px 16px; } .cta { margin: 0 16px 60px; } footer { padding: 28px 16px; flex-direction: column; gap: 12px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }

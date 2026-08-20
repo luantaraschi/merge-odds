@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Merge Odds</title>
+  <desc id="desc">Read the rules before you touch the repo.</desc>
+  <rect width="1200" height="630" fill="#f1efe7"/>
+  <rect x="54" y="54" width="1092" height="522" fill="none" stroke="#111713" stroke-width="3"/>
+  <g transform="translate(92 102)">
+    <rect width="112" height="112" rx="12" fill="#111713"/>
+    <path d="M16 28h18c14 0 22 9 22 28s8 28 22 28h18" fill="none" stroke="#f1efe7" stroke-width="9"/>
+    <path d="M16 84h18c14 0 22-9 22-28" fill="none" stroke="#f1efe7" stroke-width="9"/>
+    <path d="M56 38v36" stroke="#d7ff59" stroke-width="9"/>
+  </g>
+  <text x="236" y="184" fill="#111713" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="72" font-weight="700" letter-spacing="-4">merge odds</text>
+  <text x="92" y="352" fill="#111713" font-family="Georgia, serif" font-size="72" font-weight="600">Read the rules before</text>
+  <text x="92" y="434" fill="#111713" font-family="Georgia, serif" font-size="72" font-weight="600">you touch the repo.</text>
+  <text x="92" y="516" fill="#174c3c" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="24">POLICY FIRST  /  EVIDENCE PINNED  /  STATS LAST</text>
+</svg>

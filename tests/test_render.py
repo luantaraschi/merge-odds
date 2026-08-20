@@ -36,7 +36,7 @@ def test_sample_recency_column_shows_the_day_count():
     assert "34.0 d" in row
 
 
-def test_sample_recency_column_shows_a_dash_when_absent():
+def test_sample_recency_column_says_not_available_when_absent():
     archived = dict(load("entry_valid.json"), archived=True)
     del archived["merge_stats"]
 
@@ -46,7 +46,7 @@ def test_sample_recency_column_shows_a_dash_when_absent():
         if "payloadcms/payload" in line
     )
 
-    assert "| — |" in row
+    assert "| not available |" in row
 
 
 def test_rows_are_sorted_by_name_not_by_any_score():
@@ -57,7 +57,7 @@ def test_rows_are_sorted_by_name_not_by_any_score():
     assert "payloadcms/payload" in rows[1]
 
 
-def test_insufficient_sample_shows_a_dash_not_a_number():
+def test_insufficient_sample_says_not_available_not_a_number():
     table = render_table([load("entry_restricted.json")])
     header_cells = table.splitlines()[0].split(" | ")
     row = next(
@@ -67,10 +67,10 @@ def test_insufficient_sample_shows_a_dash_not_a_number():
     )
     cells = row.split(" | ")
 
-    assert "|  |" in row or "| — |" in row
+    assert "| not available |" in row
     stat_columns = ("Casual acceptance", "Median", "p90")
     for column in stat_columns:
-        assert cells[header_cells.index(column)] == "—"
+        assert cells[header_cells.index(column)] == "not available"
 
 
 def test_splice_replaces_only_between_the_markers():

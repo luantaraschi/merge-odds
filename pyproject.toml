@@ -5,6 +5,10 @@ description = "Does this project accept outside contributions, and under what ru
 requires-python = ">=3.11"
 dependencies = ["requests>=2.31", "jsonschema>=4.21"]
 
+[project.urls]
+Homepage = "https://luantaraschi.github.io/merge-odds/"
+Repository = "https://github.com/luantaraschi/merge-odds"
+
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
 
