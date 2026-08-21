@@ -50,6 +50,7 @@ Where a policy cell is linked, the link opens the source text pinned to the comm
 | [supabase/supabase](https://github.com/supabase/supabase) | yes | [yes](https://github.com/supabase/supabase/blob/6c0439ace812f134859a825e421f5f241cbf01b3/CONTRIBUTING.md#L23) | not stated | not stated | 0.9 | 0.92 d | 10.73 d | 1.78 d | 2026-08-07 |
 | [twentyhq/twenty](https://github.com/twentyhq/twenty) | yes | not required | not stated | not stated | not available | not available | not available | 1.65 d | 2026-08-07 |
 | [withastro/astro](https://github.com/withastro/astro) | yes | not required | not stated | not stated | 0.56 | 3.26 d | 15.08 d | 9.96 d | 2026-08-07 |
+| [wundergraph/cosmo](https://github.com/wundergraph/cosmo) | yes | [yes](https://github.com/wundergraph/cosmo/blob/9ddb7292c874e530adb4e71d8726cade9989fb77/CONTRIBUTING.md#L3) | not stated | not stated | not available | not available | not available | 27.76 d | 2026-08-21 |
 <!-- merge-odds:table:end -->
 
 ## How an entry is built

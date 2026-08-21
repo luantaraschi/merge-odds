@@ -253,5 +253,32 @@
       "median_days_to_merge": 3.26,
       "p90_days_to_merge": 15.08
     }
+  },
+  {
+    "repo": "wundergraph/cosmo",
+    "measured_at": "2026-08-21",
+    "sha": "9ddb7292c874e530adb4e71d8726cade9989fb77",
+    "archived": false,
+    "insufficient_sample": true,
+    "policy": {
+      "accepts_external_prs": true,
+      "requires_issue_first": true,
+      "ai_assisted_code": "not_stated",
+      "ai_authored_pr_text": "not_stated"
+    },
+    "evidence": {
+      "accepts_external_prs": null,
+      "requires_issue_first": {
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/wundergraph/cosmo/blob/9ddb7292c874e530adb4e71d8726cade9989fb77/CONTRIBUTING.md#L3"
+      },
+      "ai_assisted_code": null,
+      "ai_authored_pr_text": null
+    },
+    "stats": {
+      "sample_size": 98,
+      "median_close_age_days": 27.76,
+      "casual_sample_size": 14
+    }
   }
 ]
