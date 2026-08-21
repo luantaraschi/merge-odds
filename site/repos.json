@@ -33,6 +33,33 @@
     }
   },
   {
+    "repo": "facebook/lexical",
+    "measured_at": "2026-08-21",
+    "sha": "0539e88c938f63eef2ecd16d86081a89319271d6",
+    "archived": false,
+    "insufficient_sample": true,
+    "policy": {
+      "accepts_external_prs": true,
+      "requires_issue_first": false,
+      "ai_assisted_code": "not_stated",
+      "ai_authored_pr_text": "allowed_with_conditions"
+    },
+    "evidence": {
+      "accepts_external_prs": null,
+      "requires_issue_first": null,
+      "ai_assisted_code": null,
+      "ai_authored_pr_text": {
+        "source": "AGENTS.md",
+        "url": "https://github.com/facebook/lexical/blob/0539e88c938f63eef2ecd16d86081a89319271d6/AGENTS.md#L316-L320"
+      }
+    },
+    "stats": {
+      "sample_size": 99,
+      "median_close_age_days": 10.57,
+      "casual_sample_size": 11
+    }
+  },
+  {
     "repo": "isomorphic-git/isomorphic-git",
     "measured_at": "2026-08-21",
     "sha": "0730055c175cbea78819ba8c7a03bbc5a77e5b90",
