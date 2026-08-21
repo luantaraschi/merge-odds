@@ -118,3 +118,65 @@ def test_catches_ai_generated_comments_not_just_descriptions():
     }
 
     assert any(c.claim == "ai_authored_pr_text" for c in scan(files))
+
+
+def test_catches_raise_an_issue_before_core_changes():
+    """codeceptjs writes its only gate as "raise an issue", under a Core Changes
+    heading. Every issue-first pattern demanded open, file or ask, so the claim
+    landed in unmatched_claims and that silence read as "no requirement"."""
+    files = {
+        ".github/CONTRIBUTING.md": (
+            "## Core Changes\n"
+            "\n"
+            "Before applying any Core changes please raise an issue to discuss "
+            "that change with core team.\n"
+        )
+    }
+
+    assert any(c.claim == "requires_issue_first" for c in scan(files))
+
+
+def test_catches_open_an_issue_to_discuss():
+    """wundergraph/cosmo opens CONTRIBUTING.md with this sentence. "open an issue
+    first" matched and "open an issue to discuss" did not, and the only difference
+    is which word follows the noun."""
+    files = {
+        "CONTRIBUTING.md": (
+            "Before contributing to the WunderGraph Cosmo repository, please open "
+            "an issue to discuss the changes you would like to make.\n"
+        )
+    }
+
+    assert any(c.claim == "requires_issue_first" for c in scan(files))
+
+
+def test_catches_a_discussion_requirement_written_as_a_markdown_link():
+    """supabase has been in the dataset with requires_issue_first true since the
+    first release, and the scanner never found the sentence behind it: a human
+    read the file. The claim covers a prior issue or discussion, no pattern
+    mentioned discussions, and the noun is wrapped in a markdown link."""
+    files = {
+        "CONTRIBUTING.md": (
+            "- If you're submitting a new feature, make sure you have opened a "
+            "[Discussion](https://github.com/orgs/supabase/discussions/new/choose) "
+            "to discuss the new feature before opening a PR.\n"
+        )
+    }
+
+    assert any(c.claim == "requires_issue_first" for c in scan(files))
+
+
+def test_catches_start_by_opening_an_issue_split_by_a_markdown_link():
+    """orval states the requirement twice. "make sure you open an issue first"
+    matched; the broader one under Prerequisites did not, because a markdown link
+    splits the verb from the rest of the sentence."""
+    files = {
+        "CONTRIBUTING.md": (
+            "In order to not waste your time implementing a change that has "
+            "already been declined, start by [opening an issue]"
+            "(https://github.com/orval-labs/orval/issues/new) describing the "
+            "problem you would like to solve.\n"
+        )
+    }
+
+    assert any(c.claim == "requires_issue_first" for c in scan(files))
