@@ -1,5 +1,32 @@
 [
   {
+    "repo": "codeceptjs/CodeceptJS",
+    "measured_at": "2026-08-21",
+    "sha": "eb1bcdc533b79ae75e21a6ede19afd45f9b06631",
+    "archived": false,
+    "insufficient_sample": true,
+    "policy": {
+      "accepts_external_prs": true,
+      "requires_issue_first": true,
+      "ai_assisted_code": "not_stated",
+      "ai_authored_pr_text": "not_stated"
+    },
+    "evidence": {
+      "accepts_external_prs": null,
+      "requires_issue_first": {
+        "source": ".github/CONTRIBUTING.md",
+        "url": "https://github.com/codeceptjs/CodeceptJS/blob/eb1bcdc533b79ae75e21a6ede19afd45f9b06631/.github/CONTRIBUTING.md#L110"
+      },
+      "ai_assisted_code": null,
+      "ai_authored_pr_text": null
+    },
+    "stats": {
+      "sample_size": 75,
+      "median_close_age_days": 66.42,
+      "casual_sample_size": 12
+    }
+  },
+  {
     "repo": "directus/directus",
     "measured_at": "2026-08-07",
     "sha": "197d141ad92c659a8d89a29fe58b9618ed9863e2",
