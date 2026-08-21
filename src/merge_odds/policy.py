@@ -51,6 +51,13 @@ PATTERNS: dict[str, tuple[str, ...]] = {
         r"discuss (the )?change in an issue before",
         r"(should|must) reference an existing issue",
         r"open an issue before",
+        # The verb is not always "open", the noun is not always "issue", and a
+        # markdown link routinely splits the two. Each of these is a phrasing
+        # that a real project used and that the patterns above walked past.
+        r"raise an issue",
+        r"open an issue to discuss",
+        r"open(ed|ing)? a \[?discussion",
+        r"start by \[?opening an issue",
     ),
     "ai_assisted_code": (
         r"\bAI[- ]assisted\b",
