@@ -1,0 +1,26 @@
+{
+  "repo": "facebook/lexical",
+  "measured_at": "2026-08-21",
+  "default_branch_sha": "0539e88c938f63eef2ecd16d86081a89319271d6",
+  "policy": {
+    "accepts_external_prs": true,
+    "requires_issue_first": false,
+    "ai_assisted_code": "not_stated",
+    "ai_authored_pr_text": "allowed_with_conditions",
+    "evidence": [
+      {
+        "claim": "ai_authored_pr_text",
+        "source": "AGENTS.md",
+        "url": "https://github.com/facebook/lexical/blob/0539e88c938f63eef2ecd16d86081a89319271d6/AGENTS.md#L316-L320",
+        "quote": "This is an open source project: never include agent-session URLs or other\nprivate/team-internal links (e.g. `https://claude.ai/code/session_...`) in\ncommit messages, PR titles, or PR bodies. Those URLs are private to the\nperson or team that ran the session and are meaningless or misleading to\neveryone else. Co-authorship attribution (e.g. `Co-Authored-By:`) is fine."
+      }
+    ]
+  },
+  "insufficient_sample": true,
+  "merge_stats": {
+    "sample_size": 99,
+    "median_close_age_days": 10.5732,
+    "bots_excluded": true,
+    "casual_sample_size": 11
+  }
+}
