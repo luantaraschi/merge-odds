@@ -120,6 +120,42 @@
     }
   },
   {
+    "repo": "orval-labs/orval",
+    "measured_at": "2026-08-21",
+    "sha": "de70663e9ba63bbf15765133d476c54aae99fd45",
+    "archived": false,
+    "insufficient_sample": false,
+    "policy": {
+      "accepts_external_prs": true,
+      "requires_issue_first": true,
+      "ai_assisted_code": "allowed_with_conditions",
+      "ai_authored_pr_text": "allowed_with_conditions"
+    },
+    "evidence": {
+      "accepts_external_prs": null,
+      "requires_issue_first": {
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/orval-labs/orval/blob/de70663e9ba63bbf15765133d476c54aae99fd45/CONTRIBUTING.md#L7"
+      },
+      "ai_assisted_code": {
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/orval-labs/orval/blob/de70663e9ba63bbf15765133d476c54aae99fd45/CONTRIBUTING.md#L13"
+      },
+      "ai_authored_pr_text": {
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/orval-labs/orval/blob/de70663e9ba63bbf15765133d476c54aae99fd45/CONTRIBUTING.md#L15"
+      }
+    },
+    "stats": {
+      "sample_size": 93,
+      "median_close_age_days": 17.37,
+      "casual_sample_size": 29,
+      "casual_author_acceptance": 0.83,
+      "median_days_to_merge": 0.3,
+      "p90_days_to_merge": 2.58
+    }
+  },
+  {
     "repo": "payloadcms/payload",
     "measured_at": "2026-08-07",
     "sha": "d192e6fedae29dc574468cbac1b5a5a8aae910b6",
