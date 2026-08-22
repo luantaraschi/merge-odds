@@ -1,0 +1,26 @@
+{
+  "repo": "wundergraph/cosmo",
+  "measured_at": "2026-08-21",
+  "default_branch_sha": "9ddb7292c874e530adb4e71d8726cade9989fb77",
+  "policy": {
+    "accepts_external_prs": true,
+    "requires_issue_first": true,
+    "ai_assisted_code": "not_stated",
+    "ai_authored_pr_text": "not_stated",
+    "evidence": [
+      {
+        "claim": "requires_issue_first",
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/wundergraph/cosmo/blob/9ddb7292c874e530adb4e71d8726cade9989fb77/CONTRIBUTING.md#L3",
+        "quote": "Before contributing to the WunderGraph Cosmo repository, please open an issue to discuss the changes you would like to make. Alternatively, you can also open a discussion in the [WunderGraph Discussions](https://github.com/wundergraph/cosmo/discussions)."
+      }
+    ]
+  },
+  "insufficient_sample": true,
+  "merge_stats": {
+    "sample_size": 98,
+    "median_close_age_days": 27.7613,
+    "bots_excluded": true,
+    "casual_sample_size": 14
+  }
+}
