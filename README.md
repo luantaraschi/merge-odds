@@ -41,6 +41,7 @@ Where a policy cell is linked, the link opens the source text pinned to the comm
 <!-- merge-odds:table:start -->
 | Project | External PRs | Issue first | AI code | AI PR text | Casual acceptance | Median | p90 | Sample recency | Measured |
 |---|---|---|---|---|---|---|---|---|---|
+| [codeceptjs/CodeceptJS](https://github.com/codeceptjs/CodeceptJS) | yes | [yes](https://github.com/codeceptjs/CodeceptJS/blob/eb1bcdc533b79ae75e21a6ede19afd45f9b06631/.github/CONTRIBUTING.md#L110) | not stated | not stated | not available | not available | not available | 66.42 d | 2026-08-21 |
 | [directus/directus](https://github.com/directus/directus) | yes | not required | [conditional](https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L21-L22) | [disallowed](https://github.com/directus/directus/blob/197d141ad92c659a8d89a29fe58b9618ed9863e2/ai_policy.md#L29-L30) | 0.33 | 4.09 d | 49.65 d | 51.45 d | 2026-08-07 |
 | [facebook/lexical](https://github.com/facebook/lexical) | yes | not required | not stated | [conditional](https://github.com/facebook/lexical/blob/0539e88c938f63eef2ecd16d86081a89319271d6/AGENTS.md#L316-L320) | not available | not available | not available | 10.57 d | 2026-08-21 |
 | [isomorphic-git/isomorphic-git](https://github.com/isomorphic-git/isomorphic-git) | yes | not required | not stated | not stated | not available | not available | not available | 28.89 d | 2026-08-21 |

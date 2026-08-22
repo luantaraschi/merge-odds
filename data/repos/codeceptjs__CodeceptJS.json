@@ -1,0 +1,26 @@
+{
+  "repo": "codeceptjs/CodeceptJS",
+  "measured_at": "2026-08-21",
+  "default_branch_sha": "eb1bcdc533b79ae75e21a6ede19afd45f9b06631",
+  "policy": {
+    "accepts_external_prs": true,
+    "requires_issue_first": true,
+    "ai_assisted_code": "not_stated",
+    "ai_authored_pr_text": "not_stated",
+    "evidence": [
+      {
+        "claim": "requires_issue_first",
+        "source": ".github/CONTRIBUTING.md",
+        "url": "https://github.com/codeceptjs/CodeceptJS/blob/eb1bcdc533b79ae75e21a6ede19afd45f9b06631/.github/CONTRIBUTING.md#L110",
+        "quote": "Before applying any Core changes please raise an issue to discuss that change with core team."
+      }
+    ]
+  },
+  "insufficient_sample": true,
+  "merge_stats": {
+    "sample_size": 75,
+    "median_close_age_days": 66.4217,
+    "bots_excluded": true,
+    "casual_sample_size": 12
+  }
+}
