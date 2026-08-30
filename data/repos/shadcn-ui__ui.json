@@ -18,24 +18,5 @@
     "distinct_merged_casual_authors": 7,
     "median_days_to_merge": 3.659,
     "p90_days_to_merge": 25.8151
-  },
-  "_review": {
-    "candidates": [
-      {
-        "claim": "requires_issue_first",
-        "source": "CONTRIBUTING.md",
-        "url": "https://github.com/shadcn-ui/ui/blob/da43f5a12bea0fd9287f9f7a36b3939b99b6fa09/CONTRIBUTING.md#L193",
-        "quote": "If you have a request for a new component, please open a discussion on GitHub. We'll be happy to help you out."
-      }
-    ],
-    "unmatched_claims": [
-      "accepts_external_prs",
-      "ai_assisted_code",
-      "ai_authored_pr_text"
-    ],
-    "files_read": [
-      "CONTRIBUTING.md",
-      "README.md"
-    ]
   }
 }
