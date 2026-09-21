@@ -1,6 +1,6 @@
 {
   "repo": "withastro/astro",
-  "measured_at": "2026-08-07",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "722eed64c4ec878a4778ab312599733b325b21ca",
   "policy": {
     "accepts_external_prs": true,
@@ -10,13 +10,13 @@
     "evidence": []
   },
   "merge_stats": {
-    "sample_size": 99,
-    "median_close_age_days": 9.958,
+    "sample_size": 66,
+    "median_close_age_days": 4.9223,
     "bots_excluded": true,
-    "casual_sample_size": 39,
-    "casual_author_acceptance": 0.5641,
-    "distinct_merged_casual_authors": 20,
-    "median_days_to_merge": 3.2643,
-    "p90_days_to_merge": 15.0786
+    "casual_sample_size": 45,
+    "casual_author_acceptance": 0.5778,
+    "distinct_merged_casual_authors": 23,
+    "median_days_to_merge": 5.698,
+    "p90_days_to_merge": 38.1801
   }
 }

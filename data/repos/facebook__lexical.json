@@ -1,6 +1,6 @@
 {
   "repo": "facebook/lexical",
-  "measured_at": "2026-08-21",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "0539e88c938f63eef2ecd16d86081a89319271d6",
   "policy": {
     "accepts_external_prs": true,
@@ -16,11 +16,14 @@
       }
     ]
   },
-  "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 99,
-    "median_close_age_days": 10.5732,
+    "sample_size": 85,
+    "median_close_age_days": 18.449,
     "bots_excluded": true,
-    "casual_sample_size": 11
+    "casual_sample_size": 35,
+    "casual_author_acceptance": 0.5714,
+    "distinct_merged_casual_authors": 17,
+    "median_days_to_merge": 17.9141,
+    "p90_days_to_merge": 85.695
   }
 }

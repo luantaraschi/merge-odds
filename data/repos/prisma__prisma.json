@@ -1,6 +1,6 @@
 {
   "repo": "prisma/prisma",
-  "measured_at": "2026-08-07",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "06ea3dc3775d399a0a501d6d40ba6999a1c1346d",
   "policy": {
     "accepts_external_prs": true,
@@ -24,9 +24,9 @@
   },
   "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 79,
-    "median_close_age_days": 6.7969,
+    "sample_size": 89,
+    "median_close_age_days": 9.7698,
     "bots_excluded": true,
-    "casual_sample_size": 12
+    "casual_sample_size": 5
   }
 }

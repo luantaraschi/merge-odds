@@ -1,6 +1,6 @@
 {
   "repo": "wundergraph/cosmo",
-  "measured_at": "2026-08-21",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "9ddb7292c874e530adb4e71d8726cade9989fb77",
   "policy": {
     "accepts_external_prs": true,
@@ -18,9 +18,9 @@
   },
   "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 98,
-    "median_close_age_days": 27.7613,
+    "sample_size": 100,
+    "median_close_age_days": 18.3007,
     "bots_excluded": true,
-    "casual_sample_size": 14
+    "casual_sample_size": 10
   }
 }

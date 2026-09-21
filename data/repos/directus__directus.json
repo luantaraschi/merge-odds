@@ -1,6 +1,6 @@
 {
   "repo": "directus/directus",
-  "measured_at": "2026-08-07",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "197d141ad92c659a8d89a29fe58b9618ed9863e2",
   "policy": {
     "accepts_external_prs": true,
@@ -36,12 +36,12 @@
   },
   "merge_stats": {
     "sample_size": 100,
-    "median_close_age_days": 51.4502,
+    "median_close_age_days": 60.9454,
     "bots_excluded": true,
-    "casual_sample_size": 46,
-    "casual_author_acceptance": 0.3261,
-    "distinct_merged_casual_authors": 14,
-    "median_days_to_merge": 4.0867,
-    "p90_days_to_merge": 49.6518
+    "casual_sample_size": 39,
+    "casual_author_acceptance": 0.2564,
+    "distinct_merged_casual_authors": 10,
+    "median_days_to_merge": 10.3883,
+    "p90_days_to_merge": 40.7199
   }
 }

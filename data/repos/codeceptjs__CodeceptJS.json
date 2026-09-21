@@ -1,6 +1,6 @@
 {
   "repo": "codeceptjs/CodeceptJS",
-  "measured_at": "2026-08-21",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "eb1bcdc533b79ae75e21a6ede19afd45f9b06631",
   "policy": {
     "accepts_external_prs": true,
@@ -18,9 +18,9 @@
   },
   "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 75,
-    "median_close_age_days": 66.4217,
+    "sample_size": 76,
+    "median_close_age_days": 50.2113,
     "bots_excluded": true,
-    "casual_sample_size": 12
+    "casual_sample_size": 15
   }
 }

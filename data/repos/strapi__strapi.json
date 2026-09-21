@@ -1,6 +1,6 @@
 {
   "repo": "strapi/strapi",
-  "measured_at": "2026-08-07",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "aaaae591147675500fa380affdeef241117b8495",
   "policy": {
     "accepts_external_prs": true,
@@ -10,13 +10,13 @@
     "evidence": []
   },
   "merge_stats": {
-    "sample_size": 83,
-    "median_close_age_days": 6.4098,
+    "sample_size": 98,
+    "median_close_age_days": 6.9235,
     "bots_excluded": true,
-    "casual_sample_size": 41,
-    "casual_author_acceptance": 0.4146,
-    "distinct_merged_casual_authors": 16,
-    "median_days_to_merge": 5.9918,
-    "p90_days_to_merge": 67.6427
+    "casual_sample_size": 46,
+    "casual_author_acceptance": 0.4348,
+    "distinct_merged_casual_authors": 15,
+    "median_days_to_merge": 7.8437,
+    "p90_days_to_merge": 46.0891
   }
 }
