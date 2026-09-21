@@ -1,6 +1,6 @@
 {
   "repo": "isomorphic-git/isomorphic-git",
-  "measured_at": "2026-08-21",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "0730055c175cbea78819ba8c7a03bbc5a77e5b90",
   "policy": {
     "accepts_external_prs": true,
@@ -11,9 +11,9 @@
   },
   "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 49,
-    "median_close_age_days": 28.8875,
+    "sample_size": 60,
+    "median_close_age_days": 35.2331,
     "bots_excluded": true,
-    "casual_sample_size": 12
+    "casual_sample_size": 15
   }
 }

@@ -1,6 +1,6 @@
 {
   "repo": "orval-labs/orval",
-  "measured_at": "2026-08-21",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "de70663e9ba63bbf15765133d476c54aae99fd45",
   "policy": {
     "accepts_external_prs": true,
@@ -34,14 +34,11 @@
       }
     ]
   },
+  "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 93,
-    "median_close_age_days": 17.3708,
+    "sample_size": 92,
+    "median_close_age_days": 7.1291,
     "bots_excluded": true,
-    "casual_sample_size": 29,
-    "casual_author_acceptance": 0.8276,
-    "distinct_merged_casual_authors": 19,
-    "median_days_to_merge": 0.2977,
-    "p90_days_to_merge": 2.5832
+    "casual_sample_size": 17
   }
 }

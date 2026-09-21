@@ -1,6 +1,6 @@
 {
   "repo": "twentyhq/twenty",
-  "measured_at": "2026-08-07",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "10ee130eb951d397c7f0c428749ba8c05a0777e5",
   "policy": {
     "accepts_external_prs": true,
@@ -11,9 +11,9 @@
   },
   "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 85,
-    "median_close_age_days": 1.6474,
+    "sample_size": 97,
+    "median_close_age_days": 1.7389,
     "bots_excluded": true,
-    "casual_sample_size": 10
+    "casual_sample_size": 18
   }
 }

@@ -1,7 +1,7 @@
 [
   {
     "repo": "codeceptjs/CodeceptJS",
-    "measured_at": "2026-08-21",
+    "measured_at": "2026-09-21",
     "sha": "eb1bcdc533b79ae75e21a6ede19afd45f9b06631",
     "archived": false,
     "insufficient_sample": true,
@@ -21,14 +21,14 @@
       "ai_authored_pr_text": null
     },
     "stats": {
-      "sample_size": 75,
-      "median_close_age_days": 66.42,
-      "casual_sample_size": 12
+      "sample_size": 76,
+      "median_close_age_days": 50.21,
+      "casual_sample_size": 15
     }
   },
   {
     "repo": "directus/directus",
-    "measured_at": "2026-08-07",
+    "measured_at": "2026-09-21",
     "sha": "197d141ad92c659a8d89a29fe58b9618ed9863e2",
     "archived": false,
     "insufficient_sample": false,
@@ -52,19 +52,19 @@
     },
     "stats": {
       "sample_size": 100,
-      "median_close_age_days": 51.45,
-      "casual_sample_size": 46,
-      "casual_author_acceptance": 0.33,
-      "median_days_to_merge": 4.09,
-      "p90_days_to_merge": 49.65
+      "median_close_age_days": 60.95,
+      "casual_sample_size": 39,
+      "casual_author_acceptance": 0.26,
+      "median_days_to_merge": 10.39,
+      "p90_days_to_merge": 40.72
     }
   },
   {
     "repo": "facebook/lexical",
-    "measured_at": "2026-08-21",
+    "measured_at": "2026-09-21",
     "sha": "0539e88c938f63eef2ecd16d86081a89319271d6",
     "archived": false,
-    "insufficient_sample": true,
+    "insufficient_sample": false,
     "policy": {
       "accepts_external_prs": true,
       "requires_issue_first": false,
@@ -81,14 +81,17 @@
       }
     },
     "stats": {
-      "sample_size": 99,
-      "median_close_age_days": 10.57,
-      "casual_sample_size": 11
+      "sample_size": 85,
+      "median_close_age_days": 18.45,
+      "casual_sample_size": 35,
+      "casual_author_acceptance": 0.57,
+      "median_days_to_merge": 17.91,
+      "p90_days_to_merge": 85.69
     }
   },
   {
     "repo": "isomorphic-git/isomorphic-git",
-    "measured_at": "2026-08-21",
+    "measured_at": "2026-09-21",
     "sha": "0730055c175cbea78819ba8c7a03bbc5a77e5b90",
     "archived": false,
     "insufficient_sample": true,
@@ -105,14 +108,14 @@
       "ai_authored_pr_text": null
     },
     "stats": {
-      "sample_size": 49,
-      "median_close_age_days": 28.89,
-      "casual_sample_size": 12
+      "sample_size": 60,
+      "median_close_age_days": 35.23,
+      "casual_sample_size": 15
     }
   },
   {
     "repo": "n8n-io/n8n",
-    "measured_at": "2026-08-07",
+    "measured_at": "2026-09-21",
     "sha": "c0d863ec3cbad249ac6e416e0c94a500d237a4f7",
     "archived": false,
     "insufficient_sample": false,
@@ -138,20 +141,20 @@
       }
     },
     "stats": {
-      "sample_size": 86,
-      "median_close_age_days": 0.81,
-      "casual_sample_size": 59,
-      "casual_author_acceptance": 0.47,
-      "median_days_to_merge": 0.57,
-      "p90_days_to_merge": 2.88
+      "sample_size": 83,
+      "median_close_age_days": 2.9,
+      "casual_sample_size": 61,
+      "casual_author_acceptance": 0.51,
+      "median_days_to_merge": 2.73,
+      "p90_days_to_merge": 7.87
     }
   },
   {
     "repo": "orval-labs/orval",
-    "measured_at": "2026-08-21",
+    "measured_at": "2026-09-21",
     "sha": "de70663e9ba63bbf15765133d476c54aae99fd45",
     "archived": false,
-    "insufficient_sample": false,
+    "insufficient_sample": true,
     "policy": {
       "accepts_external_prs": true,
       "requires_issue_first": true,
@@ -174,20 +177,17 @@
       }
     },
     "stats": {
-      "sample_size": 93,
-      "median_close_age_days": 17.37,
-      "casual_sample_size": 29,
-      "casual_author_acceptance": 0.83,
-      "median_days_to_merge": 0.3,
-      "p90_days_to_merge": 2.58
+      "sample_size": 92,
+      "median_close_age_days": 7.13,
+      "casual_sample_size": 17
     }
   },
   {
     "repo": "payloadcms/payload",
-    "measured_at": "2026-08-07",
+    "measured_at": "2026-09-21",
     "sha": "d192e6fedae29dc574468cbac1b5a5a8aae910b6",
     "archived": false,
-    "insufficient_sample": true,
+    "insufficient_sample": false,
     "policy": {
       "accepts_external_prs": true,
       "requires_issue_first": false,
@@ -201,14 +201,17 @@
       "ai_authored_pr_text": null
     },
     "stats": {
-      "sample_size": 99,
-      "median_close_age_days": 3.46,
-      "casual_sample_size": 12
+      "sample_size": 100,
+      "median_close_age_days": 18.5,
+      "casual_sample_size": 29,
+      "casual_author_acceptance": 0.34,
+      "median_days_to_merge": 3.1,
+      "p90_days_to_merge": 17.49
     }
   },
   {
     "repo": "prisma/prisma",
-    "measured_at": "2026-08-07",
+    "measured_at": "2026-09-21",
     "sha": "06ea3dc3775d399a0a501d6d40ba6999a1c1346d",
     "archived": false,
     "insufficient_sample": true,
@@ -231,14 +234,14 @@
       "ai_authored_pr_text": null
     },
     "stats": {
-      "sample_size": 79,
-      "median_close_age_days": 6.8,
-      "casual_sample_size": 12
+      "sample_size": 89,
+      "median_close_age_days": 9.77,
+      "casual_sample_size": 5
     }
   },
   {
     "repo": "strapi/strapi",
-    "measured_at": "2026-08-07",
+    "measured_at": "2026-09-21",
     "sha": "aaaae591147675500fa380affdeef241117b8495",
     "archived": false,
     "insufficient_sample": false,
@@ -255,17 +258,17 @@
       "ai_authored_pr_text": null
     },
     "stats": {
-      "sample_size": 83,
-      "median_close_age_days": 6.41,
-      "casual_sample_size": 41,
-      "casual_author_acceptance": 0.41,
-      "median_days_to_merge": 5.99,
-      "p90_days_to_merge": 67.64
+      "sample_size": 98,
+      "median_close_age_days": 6.92,
+      "casual_sample_size": 46,
+      "casual_author_acceptance": 0.43,
+      "median_days_to_merge": 7.84,
+      "p90_days_to_merge": 46.09
     }
   },
   {
     "repo": "supabase/supabase",
-    "measured_at": "2026-08-07",
+    "measured_at": "2026-09-21",
     "sha": "6c0439ace812f134859a825e421f5f241cbf01b3",
     "archived": false,
     "insufficient_sample": false,
@@ -285,17 +288,17 @@
       "ai_authored_pr_text": null
     },
     "stats": {
-      "sample_size": 97,
-      "median_close_age_days": 1.78,
-      "casual_sample_size": 30,
-      "casual_author_acceptance": 0.9,
-      "median_days_to_merge": 0.92,
-      "p90_days_to_merge": 10.73
+      "sample_size": 98,
+      "median_close_age_days": 3.24,
+      "casual_sample_size": 35,
+      "casual_author_acceptance": 0.74,
+      "median_days_to_merge": 1.56,
+      "p90_days_to_merge": 15.83
     }
   },
   {
     "repo": "twentyhq/twenty",
-    "measured_at": "2026-08-07",
+    "measured_at": "2026-09-21",
     "sha": "10ee130eb951d397c7f0c428749ba8c05a0777e5",
     "archived": false,
     "insufficient_sample": true,
@@ -312,14 +315,14 @@
       "ai_authored_pr_text": null
     },
     "stats": {
-      "sample_size": 85,
-      "median_close_age_days": 1.65,
-      "casual_sample_size": 10
+      "sample_size": 97,
+      "median_close_age_days": 1.74,
+      "casual_sample_size": 18
     }
   },
   {
     "repo": "withastro/astro",
-    "measured_at": "2026-08-07",
+    "measured_at": "2026-09-21",
     "sha": "722eed64c4ec878a4778ab312599733b325b21ca",
     "archived": false,
     "insufficient_sample": false,
@@ -336,17 +339,17 @@
       "ai_authored_pr_text": null
     },
     "stats": {
-      "sample_size": 99,
-      "median_close_age_days": 9.96,
-      "casual_sample_size": 39,
-      "casual_author_acceptance": 0.56,
-      "median_days_to_merge": 3.26,
-      "p90_days_to_merge": 15.08
+      "sample_size": 66,
+      "median_close_age_days": 4.92,
+      "casual_sample_size": 45,
+      "casual_author_acceptance": 0.58,
+      "median_days_to_merge": 5.7,
+      "p90_days_to_merge": 38.18
     }
   },
   {
     "repo": "wundergraph/cosmo",
-    "measured_at": "2026-08-21",
+    "measured_at": "2026-09-21",
     "sha": "9ddb7292c874e530adb4e71d8726cade9989fb77",
     "archived": false,
     "insufficient_sample": true,
@@ -366,9 +369,9 @@
       "ai_authored_pr_text": null
     },
     "stats": {
-      "sample_size": 98,
-      "median_close_age_days": 27.76,
-      "casual_sample_size": 14
+      "sample_size": 100,
+      "median_close_age_days": 18.3,
+      "casual_sample_size": 10
     }
   }
 ]

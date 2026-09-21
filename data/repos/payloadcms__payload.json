@@ -1,6 +1,6 @@
 {
   "repo": "payloadcms/payload",
-  "measured_at": "2026-08-07",
+  "measured_at": "2026-09-21",
   "default_branch_sha": "d192e6fedae29dc574468cbac1b5a5a8aae910b6",
   "policy": {
     "accepts_external_prs": true,
@@ -9,11 +9,14 @@
     "ai_authored_pr_text": "not_stated",
     "evidence": []
   },
-  "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 99,
-    "median_close_age_days": 3.4585,
+    "sample_size": 100,
+    "median_close_age_days": 18.4954,
     "bots_excluded": true,
-    "casual_sample_size": 12
+    "casual_sample_size": 29,
+    "casual_author_acceptance": 0.3448,
+    "distinct_merged_casual_authors": 9,
+    "median_days_to_merge": 3.0964,
+    "p90_days_to_merge": 17.4903
   }
 }
