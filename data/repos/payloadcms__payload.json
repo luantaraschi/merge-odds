@@ -1,6 +1,6 @@
 {
   "repo": "payloadcms/payload",
-  "measured_at": "2026-08-07",
+  "measured_at": "2026-10-05",
   "default_branch_sha": "d192e6fedae29dc574468cbac1b5a5a8aae910b6",
   "policy": {
     "accepts_external_prs": true,
@@ -11,9 +11,9 @@
   },
   "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 99,
-    "median_close_age_days": 3.4585,
+    "sample_size": 100,
+    "median_close_age_days": 5.9605,
     "bots_excluded": true,
-    "casual_sample_size": 12
+    "casual_sample_size": 14
   }
 }
