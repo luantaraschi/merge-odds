@@ -1,6 +1,6 @@
 {
   "repo": "isomorphic-git/isomorphic-git",
-  "measured_at": "2026-08-21",
+  "measured_at": "2026-10-05",
   "default_branch_sha": "0730055c175cbea78819ba8c7a03bbc5a77e5b90",
   "policy": {
     "accepts_external_prs": true,
@@ -9,11 +9,14 @@
     "ai_authored_pr_text": "not_stated",
     "evidence": []
   },
-  "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 49,
-    "median_close_age_days": 28.8875,
+    "sample_size": 65,
+    "median_close_age_days": 56.091,
     "bots_excluded": true,
-    "casual_sample_size": 12
+    "casual_sample_size": 21,
+    "casual_author_acceptance": 0.5714,
+    "distinct_merged_casual_authors": 10,
+    "median_days_to_merge": 0.982,
+    "p90_days_to_merge": 12.6731
   }
 }

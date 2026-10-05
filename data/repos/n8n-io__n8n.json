@@ -1,6 +1,6 @@
 {
   "repo": "n8n-io/n8n",
-  "measured_at": "2026-08-07",
+  "measured_at": "2026-10-05",
   "default_branch_sha": "c0d863ec3cbad249ac6e416e0c94a500d237a4f7",
   "policy": {
     "accepts_external_prs": true,
@@ -35,13 +35,13 @@
     ]
   },
   "merge_stats": {
-    "sample_size": 86,
-    "median_close_age_days": 0.8055,
+    "sample_size": 84,
+    "median_close_age_days": 0.2095,
     "bots_excluded": true,
-    "casual_sample_size": 59,
-    "casual_author_acceptance": 0.4746,
-    "distinct_merged_casual_authors": 23,
-    "median_days_to_merge": 0.5718,
-    "p90_days_to_merge": 2.8847
+    "casual_sample_size": 47,
+    "casual_author_acceptance": 0.383,
+    "distinct_merged_casual_authors": 17,
+    "median_days_to_merge": 3.0205,
+    "p90_days_to_merge": 11.2498
   }
 }
