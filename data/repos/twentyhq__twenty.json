@@ -1,6 +1,6 @@
 {
   "repo": "twentyhq/twenty",
-  "measured_at": "2026-08-07",
+  "measured_at": "2026-10-12",
   "default_branch_sha": "10ee130eb951d397c7f0c428749ba8c05a0777e5",
   "policy": {
     "accepts_external_prs": true,
@@ -9,11 +9,14 @@
     "ai_authored_pr_text": "not_stated",
     "evidence": []
   },
-  "insufficient_sample": true,
   "merge_stats": {
-    "sample_size": 85,
-    "median_close_age_days": 1.6474,
+    "sample_size": 87,
+    "median_close_age_days": 1.1856,
     "bots_excluded": true,
-    "casual_sample_size": 10
+    "casual_sample_size": 20,
+    "casual_author_acceptance": 0.65,
+    "distinct_merged_casual_authors": 9,
+    "median_days_to_merge": 0.241,
+    "p90_days_to_merge": 7.8426
   }
 }
