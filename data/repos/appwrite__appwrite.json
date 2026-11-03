@@ -1,0 +1,32 @@
+{
+  "repo": "appwrite/appwrite",
+  "measured_at": "2026-11-03",
+  "default_branch_sha": "f5b8e8b3c473ae5f285cfa4187d3133d672d144d",
+  "policy": {
+    "accepts_external_prs": true,
+    "requires_issue_first": true,
+    "ai_assisted_code": "allowed_with_conditions",
+    "ai_authored_pr_text": "not_stated",
+    "evidence": [
+      {
+        "claim": "requires_issue_first",
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/appwrite/appwrite/blob/f5b8e8b3c473ae5f285cfa4187d3133d672d144d/CONTRIBUTING.md#L19",
+        "quote": "3. **Do not submit unsolicited PRs.** If you are not working on an assigned issue, open a GitHub issue first. Large features should be discussed on that issue; some need an [RFC](https://github.com/appwrite/rfc). PRs without context may be closed without review."
+      },
+      {
+        "claim": "ai_assisted_code",
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/appwrite/appwrite/blob/f5b8e8b3c473ae5f285cfa4187d3133d672d144d/CONTRIBUTING.md#L5",
+        "quote": "Coding conventions, architecture, tests, and how to run the stack live in [AGENTS.md](AGENTS.md). That file is the coding contract for every contributor, human or agent. Using AI does not lower the bar: you own the pull request, you must follow those standards, and you must review and oversee any agent-generated work against them. The same rules apply whether you write the code yourself or with an assistant."
+      }
+    ]
+  },
+  "insufficient_sample": true,
+  "merge_stats": {
+    "sample_size": 98,
+    "median_close_age_days": 1.2901,
+    "bots_excluded": true,
+    "casual_sample_size": 4
+  }
+}
