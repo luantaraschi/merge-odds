@@ -1,5 +1,35 @@
 [
   {
+    "repo": "appwrite/appwrite",
+    "measured_at": "2026-11-03",
+    "sha": "f5b8e8b3c473ae5f285cfa4187d3133d672d144d",
+    "archived": false,
+    "insufficient_sample": true,
+    "policy": {
+      "accepts_external_prs": true,
+      "requires_issue_first": true,
+      "ai_assisted_code": "allowed_with_conditions",
+      "ai_authored_pr_text": "not_stated"
+    },
+    "evidence": {
+      "accepts_external_prs": null,
+      "requires_issue_first": {
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/appwrite/appwrite/blob/f5b8e8b3c473ae5f285cfa4187d3133d672d144d/CONTRIBUTING.md#L19"
+      },
+      "ai_assisted_code": {
+        "source": "CONTRIBUTING.md",
+        "url": "https://github.com/appwrite/appwrite/blob/f5b8e8b3c473ae5f285cfa4187d3133d672d144d/CONTRIBUTING.md#L5"
+      },
+      "ai_authored_pr_text": null
+    },
+    "stats": {
+      "sample_size": 98,
+      "median_close_age_days": 1.29,
+      "casual_sample_size": 4
+    }
+  },
+  {
     "repo": "codeceptjs/CodeceptJS",
     "measured_at": "2026-08-21",
     "sha": "eb1bcdc533b79ae75e21a6ede19afd45f9b06631",
