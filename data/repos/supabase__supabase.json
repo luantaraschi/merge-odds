@@ -1,6 +1,6 @@
 {
   "repo": "supabase/supabase",
-  "measured_at": "2026-08-07",
+  "measured_at": "2026-11-09",
   "default_branch_sha": "6c0439ace812f134859a825e421f5f241cbf01b3",
   "policy": {
     "accepts_external_prs": true,
@@ -17,13 +17,13 @@
     ]
   },
   "merge_stats": {
-    "sample_size": 97,
-    "median_close_age_days": 1.7788,
+    "sample_size": 89,
+    "median_close_age_days": 2.5571,
     "bots_excluded": true,
-    "casual_sample_size": 30,
-    "casual_author_acceptance": 0.9,
-    "distinct_merged_casual_authors": 21,
-    "median_days_to_merge": 0.9199,
-    "p90_days_to_merge": 10.7321
+    "casual_sample_size": 47,
+    "casual_author_acceptance": 0.4681,
+    "distinct_merged_casual_authors": 18,
+    "median_days_to_merge": 1.0622,
+    "p90_days_to_merge": 25.5034
   }
 }
